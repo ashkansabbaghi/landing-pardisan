@@ -1,13 +1,17 @@
 <template>
   <section class="relative overflow-hidden rounded-b-[2rem] px-4 pb-16 pt-32 sm:px-10 sm:pb-20 sm:pt-36">
-    <img
+    <NuxtPicture
+      densities="1x"
       :src="image"
       :alt="imageAlt"
-      class="absolute inset-0 size-full object-cover"
+      class="img-cover absolute inset-0"
       width="1600"
-      height="900"
-      fetchpriority="high"
-    >
+      height="1067"
+      sizes="xs:100vw sm:100vw md:100vw lg:100vw xl:100vw xxl:100vw"
+      :preload="{ fetchPriority: 'high' }"
+      loading="eager"
+      :img-attrs="{ fetchpriority: 'high' }"
+    />
     <div class="hero-veil absolute inset-0" />
     <div class="relative z-10 mx-auto max-w-[1440px]">
       <p v-if="eyebrow" class="text-sm text-white/75">{{ eyebrow }}</p>

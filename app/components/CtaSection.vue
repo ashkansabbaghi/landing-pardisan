@@ -19,17 +19,53 @@
         </NuxtLink>
       </div>
       <div class="grid grid-cols-2 gap-3 p-4 sm:p-6">
-        <div class="relative overflow-hidden rounded-3xl">
-          <img :src="images.facade" alt="نمای ساختمان شعبه دو پردیسان" class="size-full min-h-[180px] object-cover" loading="lazy">
+        <div class="relative min-h-[180px] overflow-hidden rounded-3xl">
+          <NuxtPicture
+      densities="1x"
+            :src="images.facade"
+            alt="نمای ساختمان شعبه دو پردیسان"
+            class="img-cover size-full min-h-[180px]"
+            width="1600"
+            height="1067"
+            sizes="xs:50vw sm:50vw md:50vw lg:25vw xl:25vw xxl:25vw"
+            loading="lazy"
+          />
         </div>
-        <div class="relative mt-8 overflow-hidden rounded-3xl">
-          <img :src="images.library" alt="سالن مطالعه پردیسان" class="size-full min-h-[180px] object-cover" loading="lazy">
+        <div class="relative mt-8 min-h-[180px] overflow-hidden rounded-3xl">
+          <NuxtPicture
+      densities="1x"
+            :src="images.library"
+            alt="سالن مطالعه پردیسان"
+            class="img-cover size-full min-h-[180px]"
+            width="1400"
+            height="933"
+            sizes="xs:50vw sm:50vw md:50vw lg:25vw xl:25vw xxl:25vw"
+            loading="lazy"
+          />
         </div>
-        <div class="relative -mt-8 overflow-hidden rounded-3xl">
-          <img :src="images.stairs" alt="جزئیات معماری راهرو پردیسان" class="size-full min-h-[180px] object-cover" loading="lazy">
+        <div class="relative -mt-8 min-h-[180px] overflow-hidden rounded-3xl">
+          <NuxtPicture
+      densities="1x"
+            :src="images.stairs"
+            alt="جزئیات معماری راهرو پردیسان"
+            class="img-cover size-full min-h-[180px]"
+            width="1400"
+            height="933"
+            sizes="xs:50vw sm:50vw md:50vw lg:25vw xl:25vw xxl:25vw"
+            loading="lazy"
+          />
         </div>
-        <div class="relative overflow-hidden rounded-3xl">
-          <img :src="images.windows" alt="پنجره‌های بلند ساختمان آموزشی" class="size-full min-h-[180px] object-cover" loading="lazy">
+        <div class="relative min-h-[180px] overflow-hidden rounded-3xl">
+          <NuxtPicture
+      densities="1x"
+            :src="images.windows"
+            alt="پنجره‌های بلند ساختمان آموزشی"
+            class="img-cover size-full min-h-[180px]"
+            width="1400"
+            height="1336"
+            sizes="xs:50vw sm:50vw md:50vw lg:25vw xl:25vw xxl:25vw"
+            loading="lazy"
+          />
         </div>
       </div>
     </div>

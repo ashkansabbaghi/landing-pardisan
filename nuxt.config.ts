@@ -1,13 +1,44 @@
 import tailwindcss from '@tailwindcss/vite'
 
 const siteUrl = 'https://pardisan.ir'
+const isProd = process.env.NODE_ENV === 'production'
+
+const contentSecurityPolicy = [
+  "default-src 'self'",
+  isProd
+    ? "script-src 'self' 'unsafe-inline'"
+    : "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' data:",
+  "font-src 'self'",
+  isProd ? "connect-src 'self'" : "connect-src 'self' ws: wss:",
+  "object-src 'none'",
+  "base-uri 'self'",
+  "form-action 'self'",
+  "frame-ancestors 'none'",
+].join('; ')
+
+const securityHeaders: Record<string, string> = {
+  'X-Frame-Options': 'DENY',
+  'X-Content-Type-Options': 'nosniff',
+  'Referrer-Policy': 'strict-origin-when-cross-origin',
+  'Permissions-Policy': 'camera=(), microphone=(), geolocation=(), payment=()',
+  'Content-Security-Policy': contentSecurityPolicy,
+}
+
+if (isProd) {
+  securityHeaders['Strict-Transport-Security'] = 'max-age=31536000; includeSubDomains'
+}
+
+const longCache = 'public, max-age=31536000'
+const immutableCache = 'public, max-age=31536000, immutable'
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: false },
   ssr: true,
   css: ['~/assets/css/main.css'],
-  modules: ['@nuxtjs/sitemap'],
+  modules: ['@nuxtjs/sitemap', '@nuxt/image'],
   vite: {
     plugins: [tailwindcss()],
   },
@@ -21,12 +52,6 @@ export default defineNuxtConfig({
       viewport: 'width=device-width, initial-scale=1',
       link: [
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
-        { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-        { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
-        {
-          rel: 'stylesheet',
-          href: 'https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap',
-        },
       ],
       meta: [
         { name: 'theme-color', content: '#eef2f6' },
@@ -61,7 +86,46 @@ export default defineNuxtConfig({
       '/register',
     ],
   },
+  image: {
+    quality: 75,
+    format: ['avif', 'webp'],
+    screens: {
+      xs: 360,
+      sm: 640,
+      md: 768,
+      lg: 1024,
+      xl: 1280,
+      xxl: 1920,
+    },
+  },
   nitro: {
     compressPublicAssets: true,
+    prerender: {
+      crawlLinks: true,
+      routes: ['/'],
+    },
+    routeRules: {
+      '/**': {
+        headers: securityHeaders,
+      },
+      '/api/register': {
+        prerender: false,
+      },
+      '/images/**': {
+        headers: {
+          'Cache-Control': longCache,
+        },
+      },
+      '/_ipx/**': {
+        headers: {
+          'Cache-Control': immutableCache,
+        },
+      },
+      '/_nuxt/**': {
+        headers: {
+          'Cache-Control': immutableCache,
+        },
+      },
+    },
   },
 })

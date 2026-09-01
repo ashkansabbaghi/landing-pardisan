@@ -1,14 +1,16 @@
 <template>
   <article class="overflow-hidden rounded-[1.75rem] glass">
     <div class="relative h-64 sm:h-72">
-      <img
+      <NuxtPicture
+      densities="1x"
         :src="branch.image"
         :alt="branch.imageAlt"
-        class="size-full object-cover"
-        width="1200"
-        height="700"
+        class="img-cover size-full"
+        width="1600"
+        height="1067"
+        sizes="xs:100vw sm:100vw md:50vw lg:50vw xl:50vw xxl:50vw"
         loading="lazy"
-      >
+      />
       <div class="absolute inset-0 bg-gradient-to-t from-slate-900/50 to-transparent" />
       <p class="absolute bottom-4 right-5 text-sm font-medium text-white">{{ branch.shortName }}</p>
     </div>

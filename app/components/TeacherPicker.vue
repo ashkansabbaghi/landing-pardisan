@@ -1,14 +1,16 @@
 <template>
   <section :class="embedded ? '' : 'relative px-4 py-20 sm:px-6 lg:px-10'">
     <div v-if="!embedded" class="absolute inset-0 overflow-hidden">
-      <img
+      <NuxtPicture
+      densities="1x"
         :src="images.hall"
         alt="فضای داخلی روشن با معماری معاصر در پردیسان"
-        class="size-full object-cover"
+        class="img-cover size-full"
         width="1400"
-        height="900"
+        height="935"
+        sizes="xs:100vw sm:100vw md:100vw lg:100vw xl:100vw xxl:100vw"
         loading="lazy"
-      >
+      />
       <div class="absolute inset-0 bg-mist/72" />
     </div>
 
@@ -47,13 +49,16 @@
         </ul>
 
         <article class="relative min-h-[420px] overflow-hidden rounded-[1.75rem] lg:col-span-8 lg:min-h-[520px]">
-          <img
+          <NuxtPicture
+      densities="1x"
+            :key="selected.photo"
             :src="selected.photo"
             :alt="selected.photoAlt"
-            class="absolute inset-0 size-full object-cover"
-            width="1000"
-            height="720"
-          >
+            class="img-cover absolute inset-0"
+            width="900"
+            height="1200"
+            sizes="xs:100vw sm:100vw md:100vw lg:66vw xl:66vw xxl:66vw"
+          />
           <div class="absolute inset-0 bg-gradient-to-t from-slate-900/50 via-slate-900/10 to-transparent" />
 
           <GlassCard variant="strong" class="absolute top-5 right-5 max-w-[min(100%,22rem)] sm:top-8 sm:right-8">

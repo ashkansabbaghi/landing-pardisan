@@ -1,13 +1,17 @@
 <template>
   <section class="relative min-h-[88vh] overflow-hidden rounded-b-[2rem] sm:min-h-screen sm:rounded-b-[2.5rem]">
-    <img
+    <NuxtPicture
+      densities="1x"
       :src="images.hero"
       alt="نمای معماری ساختمان مدرسه پردیسان در غروب، با نورهای داخلی روشن"
-      class="absolute inset-0 size-full object-cover"
+      class="img-cover absolute inset-0"
       width="1920"
-      height="1080"
-      fetchpriority="high"
-    >
+      height="1280"
+      sizes="xs:100vw sm:100vw md:100vw lg:100vw xl:100vw xxl:100vw"
+      :preload="{ fetchPriority: 'high' }"
+      loading="eager"
+      :img-attrs="{ fetchpriority: 'high' }"
+    />
     <div class="hero-veil absolute inset-0" />
 
     <div class="relative z-10 mx-auto flex min-h-[88vh] max-w-[1440px] flex-col justify-end px-6 pb-16 pt-32 sm:min-h-screen sm:px-10 sm:pb-24 lg:pb-28">

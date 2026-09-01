@@ -1,14 +1,16 @@
 <template>
   <section :class="embedded ? 'px-4 py-16 sm:px-6 lg:px-10' : 'relative overflow-hidden px-4 py-20 sm:px-6 lg:px-10'">
     <div v-if="!embedded" class="absolute inset-0">
-      <img
+      <NuxtPicture
+      densities="1x"
         :src="images.corridor"
         alt="راهروی روشن اداری با شیشه و بتن در پردیسان"
-        class="size-full object-cover"
+        class="img-cover size-full"
         width="1400"
-        height="900"
+        height="935"
+        sizes="xs:100vw sm:100vw md:100vw lg:100vw xl:100vw xxl:100vw"
         loading="lazy"
-      >
+      />
       <div class="absolute inset-0 bg-mist/78" />
     </div>
 
@@ -40,13 +42,15 @@
               @click="selectedIndex = index"
             >
               <span class="relative block aspect-[3/4]">
-                <img
+                <NuxtPicture
+      densities="1x"
                   :src="member.photo"
                   :alt="member.photoAlt"
-                  class="size-full object-cover"
-                  width="400"
-                  height="520"
-                >
+                  class="img-cover size-full"
+                  width="800"
+                  height="1200"
+                  sizes="sm:210px md:250px"
+                />
                 <span class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-900/70 to-transparent p-4">
                   <span class="block text-sm font-semibold text-white">{{ member.name }}</span>
                   <span class="mt-1 block text-[11px] text-white/75">{{ member.role }}</span>

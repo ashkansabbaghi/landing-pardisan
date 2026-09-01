@@ -1,25 +1,18 @@
 <template>
   <div class="mx-auto max-w-xl">
-    <div
-      v-if="success"
-      class="rounded-[1.75rem] glass-strong p-8 sm:p-10"
-      role="status"
-    >
-      <p class="text-xs font-medium text-muted">درخواست ثبت شد</p>
-      <h2 class="mt-3 text-2xl font-semibold tracking-tight">از پیام شما متشکریم.</h2>
-      <p class="mt-4 text-sm leading-7 text-muted">
-        همکاران پذیرش در کوتاه‌ترین زمان با شمارهٔ واردشده تماس می‌گیرند. این یک پیش‌ثبت‌نام است و به‌معنای قطعی شدن ظرفیت نیست.
-      </p>
-      <button
-        type="button"
-        class="mt-8 rounded-full bg-ink px-5 py-2.5 text-sm font-medium text-white"
-        @click="resetForm"
-      >
-        ارسال فرم دیگر
-      </button>
-    </div>
+    <form class="rounded-[1.75rem] glass-strong p-6 sm:p-10" novalidate @submit.prevent="onSubmit">
+      <div class="sr-only" aria-hidden="true">
+        <label for="website">وب‌سایت</label>
+        <input
+          id="website"
+          v-model="form.website"
+          type="text"
+          name="website"
+          tabindex="-1"
+          autocomplete="off"
+        >
+      </div>
 
-    <form v-else class="rounded-[1.75rem] glass-strong p-6 sm:p-10" novalidate @submit.prevent="onSubmit">
       <div class="space-y-5">
         <div>
           <label for="studentName" class="mb-2 block text-sm font-medium">نام و نام خانوادگی دانش‌آموز</label>
@@ -28,10 +21,11 @@
             v-model="form.studentName"
             type="text"
             name="studentName"
+            maxlength="80"
             autocomplete="name"
             class="field"
             :aria-invalid="Boolean(errors.studentName)"
-            aria-describedby="studentName-error"
+            :aria-describedby="errors.studentName ? 'studentName-error' : undefined"
             required
           >
           <p v-if="errors.studentName" id="studentName-error" class="mt-1.5 text-xs text-red-700">{{ errors.studentName }}</p>
@@ -45,7 +39,7 @@
             name="grade"
             class="field"
             :aria-invalid="Boolean(errors.grade)"
-            aria-describedby="grade-error"
+            :aria-describedby="errors.grade ? 'grade-error' : undefined"
             required
           >
             <option value="" disabled>انتخاب کنید</option>
@@ -65,10 +59,11 @@
             v-model="form.parentName"
             type="text"
             name="parentName"
+            maxlength="80"
             autocomplete="name"
             class="field"
             :aria-invalid="Boolean(errors.parentName)"
-            aria-describedby="parentName-error"
+            :aria-describedby="errors.parentName ? 'parentName-error' : undefined"
             required
           >
           <p v-if="errors.parentName" id="parentName-error" class="mt-1.5 text-xs text-red-700">{{ errors.parentName }}</p>
@@ -81,14 +76,16 @@
             v-model="form.mobile"
             type="tel"
             name="mobile"
+            maxlength="11"
             inputmode="numeric"
             dir="ltr"
             autocomplete="tel"
             placeholder="09121234567"
             class="field text-left"
             :aria-invalid="Boolean(errors.mobile)"
-            aria-describedby="mobile-error"
+            :aria-describedby="errors.mobile ? 'mobile-error' : undefined"
             required
+            @blur="onMobileBlur"
           >
           <p v-if="errors.mobile" id="mobile-error" class="mt-1.5 text-xs text-red-700">{{ errors.mobile }}</p>
         </div>
@@ -99,13 +96,21 @@
             id="notes"
             v-model="form.notes"
             name="notes"
+            maxlength="400"
             rows="4"
             class="field min-h-28 resize-y"
           />
         </div>
       </div>
 
-      <p v-if="errors.submit" class="mt-4 text-sm text-red-700">{{ errors.submit }}</p>
+      <p
+        class="mt-4 text-sm text-red-700"
+        :class="errors.submit ? '' : 'sr-only'"
+        role="alert"
+        aria-live="assertive"
+      >
+        {{ errors.submit }}
+      </p>
 
       <button
         type="submit"
@@ -121,23 +126,23 @@
 <script setup lang="ts">
 const { gradeOptionGroups } = useSchoolData()
 
+const FIELD_ORDER = ['studentName', 'grade', 'parentName', 'mobile'] as const
+
 const emptyForm = () => ({
   studentName: '',
   grade: '',
   parentName: '',
   mobile: '',
   notes: '',
+  website: '',
 })
 
 const form = reactive(emptyForm())
 const errors = reactive<Record<string, string>>({})
 const pending = ref(false)
-const success = ref(false)
 
-function toEnglishDigits(value: string) {
-  return value
-    .replace(/[۰-۹]/g, digit => String(digit.charCodeAt(0) - 1776))
-    .replace(/[٠-٩]/g, digit => String(digit.charCodeAt(0) - 1632))
+function onMobileBlur() {
+  form.mobile = toEnglishDigits(form.mobile).trim()
 }
 
 function validate() {
@@ -151,16 +156,34 @@ function validate() {
   if (form.parentName.trim().length < 3) {
     errors.parentName = 'نام ولی را کامل وارد کنید.'
   }
-  const mobile = toEnglishDigits(form.mobile.trim())
-  form.mobile = mobile
-  if (!/^09\d{9}$/.test(mobile)) {
+  onMobileBlur()
+  if (!/^09\d{9}$/.test(form.mobile)) {
     errors.mobile = 'شماره موبایل را به‌صورت 0912xxxxxxx وارد کنید.'
   }
   return Object.keys(errors).length === 0
 }
 
+function focusFirstError() {
+  const first = FIELD_ORDER.find(key => errors[key])
+  if (first) {
+    document.getElementById(first)?.focus()
+  }
+}
+
+function submitErrorMessage(error: unknown) {
+  const status = typeof error === 'object' && error && 'statusCode' in error
+    ? Number((error as { statusCode?: number }).statusCode)
+    : undefined
+  if (status === 429) {
+    return 'تعداد درخواست‌ها بیش از حد است. لطفاً چند دقیقه دیگر دوباره تلاش کنید.'
+  }
+  return 'ارسال انجام نشد. لطفاً دوباره تلاش کنید یا با دفتر مدرسه تماس بگیرید.'
+}
+
 async function onSubmit() {
   if (!validate()) {
+    await nextTick()
+    focusFirstError()
     return
   }
   pending.value = true
@@ -169,20 +192,14 @@ async function onSubmit() {
       method: 'POST',
       body: { ...form },
     })
-    success.value = true
+    await navigateTo('/register/thanks', { replace: true })
   }
-  catch {
-    errors.submit = 'ارسال انجام نشد. لطفاً دوباره تلاش کنید یا با دفتر مدرسه تماس بگیرید.'
+  catch (error) {
+    errors.submit = submitErrorMessage(error)
   }
   finally {
     pending.value = false
   }
-}
-
-function resetForm() {
-  Object.assign(form, emptyForm())
-  Object.keys(errors).forEach(key => delete errors[key])
-  success.value = false
 }
 </script>
 
@@ -197,8 +214,10 @@ function resetForm() {
   color: var(--color-ink);
   outline: none;
 }
-.field:focus {
-  box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.12);
+.field:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 3px #fff;
   border-color: rgba(15, 23, 42, 0.25);
 }
 </style>
