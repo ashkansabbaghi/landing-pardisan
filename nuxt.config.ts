@@ -34,7 +34,8 @@ if (isProd) {
   securityHeaders['Strict-Transport-Security'] = 'max-age=31536000; includeSubDomains'
 }
 
-const longCache = 'public, max-age=31536000'
+const htmlCache = 'public, max-age=0, must-revalidate'
+const mediaCache = 'public, max-age=300, must-revalidate'
 const immutableCache = 'public, max-age=31536000, immutable'
 
 export default defineNuxtConfig({
@@ -111,19 +112,22 @@ export default defineNuxtConfig({
     },
     routeRules: {
       '/**': {
-        headers: securityHeaders,
+        headers: {
+          ...securityHeaders,
+          'Cache-Control': htmlCache,
+        },
       },
       '/api/register': {
         prerender: false,
       },
       '/images/**': {
         headers: {
-          'Cache-Control': longCache,
+          'Cache-Control': mediaCache,
         },
       },
       '/_ipx/**': {
         headers: {
-          'Cache-Control': immutableCache,
+          'Cache-Control': mediaCache,
         },
       },
       '/_nuxt/**': {

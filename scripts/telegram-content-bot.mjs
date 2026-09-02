@@ -14,7 +14,7 @@ import { fileURLToPath } from 'node:url'
 import { Agent, fetch } from 'undici'
 
 const TOKEN = process.env.TELEGRAM_BOT_TOKEN || process.env.NUXT_TELEGRAM_BOT_TOKEN || ''
-const ADMIN_CHAT_ID = process.env.TELEGRAM_CHAT_ID || process.env.NUXT_TELEGRAM_CHAT_ID || ''
+let ADMIN_CHAT_ID = process.env.TELEGRAM_CHAT_ID || process.env.NUXT_TELEGRAM_CHAT_ID || ''
 const TELEGRAM_API_HOST = 'api.telegram.org'
 const FILTERED_DNS_IPS = new Set(['10.10.34.34', '10.10.34.35', '10.10.34.36'])
 const PUBLIC_DNS_SERVERS = ['8.8.8.8', '1.1.1.1', '9.9.9.9', '178.22.122.100']
@@ -428,6 +428,10 @@ async function send(chatId, text, extra = {}) {
   let result = await api('sendMessage', { ...payload, chat_id: chatId })
   const migrated = migratedChatId(chatId, result)
   if (migrated) {
+    if (String(chatId) === String(ADMIN_CHAT_ID)) {
+      ADMIN_CHAT_ID = migrated
+      console.warn(`Admin chat migrated to ${migrated}. Update TELEGRAM_CHAT_ID in .env.`)
+    }
     result = await api('sendMessage', { ...payload, chat_id: migrated })
   }
   if (!result.ok) {
