@@ -15,7 +15,7 @@
           to="/register"
           class="mt-10 inline-flex w-fit rounded-full bg-ink px-6 py-3 text-sm font-medium text-white"
         >
-          فرم ثبت‌نام اولیه
+          تماس با مدرسه
         </NuxtLink>
       </div>
       <div class="grid grid-cols-2 gap-3 p-4 sm:p-6">

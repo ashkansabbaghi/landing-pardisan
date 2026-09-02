@@ -1,4 +1,4 @@
 User-Agent: *
 Allow: /
 
-Sitemap: https://pardisan.ir/sitemap.xml
+Sitemap: https://ashkansabbaghi.github.io/landing-pardisan/sitemap.xml

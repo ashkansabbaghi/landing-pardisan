@@ -1,7 +1,13 @@
+import { joinURL } from 'ufo'
 import tailwindcss from '@tailwindcss/vite'
 
-const siteUrl = 'https://pardisan.ir'
+const githubPagesOrigin = 'https://ashkansabbaghi.github.io'
+const githubPagesSite = `${githubPagesOrigin}/landing-pardisan`
+const githubPagesBase = '/landing-pardisan/'
+const isDev = process.env.NODE_ENV === 'development'
 const isProd = process.env.NODE_ENV === 'production'
+const siteUrl = githubPagesSite
+const appBaseURL = process.env.NUXT_APP_BASE_URL || (isDev ? '/' : githubPagesBase)
 
 const contentSecurityPolicy = [
   "default-src 'self'",
@@ -43,6 +49,7 @@ export default defineNuxtConfig({
     plugins: [tailwindcss()],
   },
   app: {
+    baseURL: appBaseURL,
     head: {
       htmlAttrs: {
         lang: 'fa',
@@ -51,7 +58,7 @@ export default defineNuxtConfig({
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
       link: [
-        { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
+        { rel: 'icon', type: 'image/svg+xml', href: joinURL(appBaseURL, 'favicon.svg') },
       ],
       meta: [
         { name: 'theme-color', content: '#eef2f6' },
@@ -67,7 +74,7 @@ export default defineNuxtConfig({
     },
   },
   site: {
-    url: siteUrl,
+    url: githubPagesOrigin,
     name: 'مدرسه پردیسان',
     trailingSlash: false,
   },
@@ -102,7 +109,7 @@ export default defineNuxtConfig({
     compressPublicAssets: true,
     prerender: {
       crawlLinks: true,
-      routes: ['/'],
+      routes: ['/', '/register'],
     },
     routeRules: {
       '/**': {
