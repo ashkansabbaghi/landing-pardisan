@@ -1,13 +1,11 @@
 import { joinURL } from 'ufo'
 import tailwindcss from '@tailwindcss/vite'
 
-const githubPagesOrigin = 'https://ashkansabbaghi.github.io'
-const githubPagesSite = `${githubPagesOrigin}/landing-pardisan`
-const githubPagesBase = '/landing-pardisan/'
+const siteOrigin = 'https://pardisan-novin.ir'
 const isDev = process.env.NODE_ENV === 'development'
 const isProd = process.env.NODE_ENV === 'production'
-const siteUrl = githubPagesSite
-const appBaseURL = process.env.NUXT_APP_BASE_URL || (isDev ? '/' : githubPagesBase)
+const siteUrl = siteOrigin
+const appBaseURL = process.env.NUXT_APP_BASE_URL || '/'
 
 const contentSecurityPolicy = [
   "default-src 'self'",
@@ -74,7 +72,7 @@ export default defineNuxtConfig({
     },
   },
   site: {
-    url: githubPagesOrigin,
+    url: siteOrigin,
     name: 'مدرسه پردیسان',
     trailingSlash: false,
   },
