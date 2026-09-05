@@ -1,15 +1,14 @@
 <template>
   <section :class="embedded ? 'px-4 py-16 sm:px-6 lg:px-10' : 'relative overflow-hidden px-4 py-20 sm:px-6 lg:px-10'">
     <div v-if="!embedded" class="absolute inset-0">
-      <NuxtPicture
-      densities="1x"
+      <CampusMedia
+        fill
+        :shimmer="false"
         :src="images.corridor"
         alt="راهروی روشن اداری با شیشه و بتن در پردیسان"
-        class="img-cover size-full"
         width="1400"
         height="935"
         sizes="xs:100vw sm:100vw md:100vw lg:100vw xl:100vw xxl:100vw"
-        loading="lazy"
       />
       <div class="absolute inset-0 bg-mist/78" />
     </div>
@@ -50,12 +49,12 @@
               :aria-label="`${member.name}، ${member.role}`"
               @click="select(index)"
             >
-              <span class="relative block aspect-[3/4]">
-                <NuxtPicture
-      densities="1x"
+              <span class="relative block">
+                <CampusMedia
+                  class="pointer-events-none"
+                  aspect="aspect-[3/4]"
                   :src="member.photo"
                   :alt="member.photoAlt"
-                  class="img-cover size-full pointer-events-none"
                   width="800"
                   height="1200"
                   sizes="sm:210px md:250px"

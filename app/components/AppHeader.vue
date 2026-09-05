@@ -42,10 +42,19 @@
           @click="open = !open"
         >
           <span class="sr-only">منو</span>
-          <span class="flex flex-col gap-1.5" aria-hidden="true">
-            <span class="block h-px w-4 bg-ink transition" :class="open ? 'translate-y-[3.5px] rotate-45' : ''" />
-            <span class="block h-px w-4 bg-ink transition" :class="open ? 'opacity-0' : ''" />
-            <span class="block h-px w-4 bg-ink transition" :class="open ? '-translate-y-[3.5px] -rotate-45' : ''" />
+          <span class="relative block h-3.5 w-4" aria-hidden="true">
+            <span
+              class="absolute inset-x-0 top-[6.5px] h-px origin-center bg-ink transition-transform duration-200 ease-out"
+              :class="open ? 'rotate-45' : '-translate-y-[6.5px]'"
+            />
+            <span
+              class="absolute inset-x-0 top-[6.5px] h-px bg-ink transition-opacity duration-200"
+              :class="open ? 'opacity-0' : ''"
+            />
+            <span
+              class="absolute inset-x-0 top-[6.5px] h-px origin-center bg-ink transition-transform duration-200 ease-out"
+              :class="open ? '-rotate-45' : 'translate-y-[6.5px]'"
+            />
           </span>
         </button>
       </div>

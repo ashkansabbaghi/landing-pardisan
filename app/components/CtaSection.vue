@@ -19,52 +19,44 @@
         </NuxtLink>
       </div>
       <div class="grid grid-cols-2 gap-3 p-4 sm:p-6">
-        <div class="relative min-h-[180px] overflow-hidden rounded-3xl">
-          <NuxtPicture
-      densities="1x"
+        <div class="overflow-hidden rounded-3xl">
+          <CampusMedia
+            aspect="aspect-[3/2]"
             :src="images.facade"
             alt="نمای ساختمان شعبه دو پردیسان"
-            class="img-cover size-full min-h-[180px]"
             width="1600"
             height="1067"
             sizes="xs:50vw sm:50vw md:50vw lg:25vw xl:25vw xxl:25vw"
-            loading="lazy"
           />
         </div>
-        <div class="relative mt-8 min-h-[180px] overflow-hidden rounded-3xl">
-          <NuxtPicture
-      densities="1x"
+        <div class="mt-8 overflow-hidden rounded-3xl">
+          <CampusMedia
+            aspect="aspect-[3/2]"
             :src="images.library"
             alt="سالن مطالعه پردیسان"
-            class="img-cover size-full min-h-[180px]"
             width="1400"
             height="933"
             sizes="xs:50vw sm:50vw md:50vw lg:25vw xl:25vw xxl:25vw"
-            loading="lazy"
           />
         </div>
-        <div class="relative -mt-8 min-h-[180px] overflow-hidden rounded-3xl">
-          <NuxtPicture
-      densities="1x"
+        <div class="-mt-8 overflow-hidden rounded-3xl">
+          <CampusMedia
+            aspect="aspect-[3/2]"
             :src="images.stairs"
             alt="جزئیات معماری راهرو پردیسان"
-            class="img-cover size-full min-h-[180px]"
             width="1400"
             height="933"
             sizes="xs:50vw sm:50vw md:50vw lg:25vw xl:25vw xxl:25vw"
-            loading="lazy"
           />
         </div>
-        <div class="relative min-h-[180px] overflow-hidden rounded-3xl">
-          <NuxtPicture
-      densities="1x"
+        <div class="overflow-hidden rounded-3xl">
+          <CampusMedia
+            aspect="aspect-[3/2]"
             :src="images.windows"
             alt="پنجره‌های بلند ساختمان آموزشی"
-            class="img-cover size-full min-h-[180px]"
             width="1400"
             height="1336"
             sizes="xs:50vw sm:50vw md:50vw lg:25vw xl:25vw xxl:25vw"
-            loading="lazy"
           />
         </div>
       </div>

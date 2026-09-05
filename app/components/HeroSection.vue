@@ -1,15 +1,17 @@
 <template>
   <section class="relative min-h-[88vh] overflow-hidden rounded-b-[2rem] sm:min-h-screen sm:rounded-b-[2.5rem]">
-    <NuxtPicture
-      densities="1x"
+    <CampusMedia
+      fill
+      :shimmer="false"
+      :fade="false"
+      bg-class="bg-ink"
       :src="images.hero"
       alt="نمای معماری ساختمان مدرسه پردیسان در غروب، با نورهای داخلی روشن"
-      class="img-cover absolute inset-0"
       width="1920"
       height="1280"
       sizes="xs:100vw sm:100vw md:100vw lg:100vw xl:100vw xxl:100vw"
-      :preload="{ fetchPriority: 'high' }"
       loading="eager"
+      :preload="{ fetchPriority: 'high' }"
       :img-attrs="{ fetchpriority: 'high' }"
     />
     <div class="hero-veil absolute inset-0" />

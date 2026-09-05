@@ -1,15 +1,14 @@
 <template>
   <section :class="embedded ? '' : 'relative px-4 py-20 sm:px-6 lg:px-10'">
     <div v-if="!embedded" class="absolute inset-0 overflow-hidden">
-      <NuxtPicture
-      densities="1x"
+      <CampusMedia
+        fill
+        :shimmer="false"
         :src="images.hall"
         alt="فضای داخلی روشن با معماری معاصر در پردیسان"
-        class="img-cover size-full"
         width="1400"
         height="935"
         sizes="xs:100vw sm:100vw md:100vw lg:100vw xl:100vw xxl:100vw"
-        loading="lazy"
       />
       <div class="absolute inset-0 bg-mist/72" />
     </div>
@@ -49,28 +48,24 @@
         </ul>
 
         <article class="relative min-h-[420px] overflow-hidden rounded-[1.75rem] lg:col-span-8 lg:min-h-[520px]">
-          <NuxtPicture
-      densities="1x"
+          <CampusMedia
+            fill
             :key="selected.photo"
             :src="selected.photo"
             :alt="selected.photoAlt"
-            class="img-cover absolute inset-0"
             width="900"
             height="1200"
             sizes="xs:100vw sm:100vw md:100vw lg:66vw xl:66vw xxl:66vw"
           />
-          <div class="absolute inset-0 bg-gradient-to-t from-slate-900/50 via-slate-900/10 to-transparent" />
-
-          <GlassCard variant="strong" class="absolute top-5 right-5 max-w-[min(100%,22rem)] sm:top-8 sm:right-8">
-            <p class="text-xs text-muted">{{ selected.subject }} — {{ toPersianDigits(selected.years) }} سال</p>
-            <h3 class="mt-2 text-2xl font-semibold tracking-tight">{{ selected.name }}</h3>
-            <p class="mt-3 text-sm leading-6 text-muted">{{ selected.expertise }}</p>
-          </GlassCard>
-
-          <div class="absolute inset-x-5 bottom-5 grid grid-cols-3 gap-3 rounded-2xl bg-white/35 p-4 backdrop-blur-xl border border-white/25 sm:inset-x-8 sm:bottom-8">
-            <div v-for="stat in selected.stats" :key="stat.label">
-              <p class="text-[11px] text-ink/55">{{ stat.label }}</p>
-              <p class="mt-1 text-sm font-semibold">{{ stat.value }}</p>
+          <div class="pointer-events-none absolute inset-x-0 bottom-0 h-[38%] bg-gradient-to-t from-slate-900/90 via-slate-900/50 to-transparent" aria-hidden="true" />
+          <div class="absolute inset-x-0 bottom-0 px-5 pb-5 sm:px-8 sm:pb-8">
+            <h3 class="text-2xl font-semibold tracking-tight text-white">{{ selected.name }}</h3>
+            <p class="mt-2 text-sm leading-6 text-white/80">{{ selected.expertise }}</p>
+            <div class="mt-4 grid grid-cols-3 gap-3">
+              <div v-for="stat in selected.stats" :key="stat.label">
+                <p class="text-[11px] text-white/55">{{ stat.label }}</p>
+                <p class="mt-1 text-sm font-semibold text-white">{{ stat.value }}</p>
+              </div>
             </div>
           </div>
         </article>

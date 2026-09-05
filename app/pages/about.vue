@@ -16,15 +16,13 @@
           <p class="mt-6 max-w-xl text-sm leading-7 text-muted">{{ aboutContent.philosophy }}</p>
         </GlassCard>
         <GlassCard :padded="false" class="relative min-h-[260px] overflow-hidden lg:col-span-5">
-          <NuxtPicture
-      densities="1x"
+          <CampusMedia
+            fill
             :src="images.courtyard"
             alt="حیاط و نمای شعبه یک پردیسان"
-            class="img-cover size-full"
             width="1600"
             height="1048"
             sizes="xs:100vw sm:100vw md:100vw lg:40vw xl:40vw xxl:40vw"
-            loading="lazy"
           />
         </GlassCard>
       </div>

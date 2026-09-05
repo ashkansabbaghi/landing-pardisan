@@ -9,15 +9,14 @@
     />
     <section class="relative px-4 py-16 sm:px-6 lg:px-10">
       <div class="absolute inset-0 overflow-hidden">
-        <NuxtPicture
-          densities="1x"
+        <CampusMedia
+          fill
+          :shimmer="false"
           :src="images.campusDusk"
           alt=""
-          class="img-cover size-full"
           width="1600"
           height="1069"
           sizes="xs:100vw sm:100vw md:100vw lg:100vw xl:100vw xxl:100vw"
-          loading="lazy"
         />
         <div class="absolute inset-0 bg-mist/65" />
       </div>

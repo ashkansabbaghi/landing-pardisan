@@ -1,15 +1,14 @@
 <template>
   <section class="relative px-4 py-16 sm:px-6 sm:py-24 lg:px-10">
     <div class="absolute inset-0 overflow-hidden">
-      <NuxtPicture
-      densities="1x"
+      <CampusMedia
+        fill
+        :shimmer="false"
         :src="images.campusDusk"
         alt="محوطه و نمای معماری پردیسان با نور ملایم"
-        class="img-cover size-full"
         width="1600"
         height="1069"
         sizes="xs:100vw sm:100vw md:100vw lg:100vw xl:100vw xxl:100vw"
-        loading="lazy"
       />
       <div class="absolute inset-0 bg-mist/55 backdrop-blur-[2px]" />
     </div>
@@ -57,30 +56,27 @@
             <p class="text-xl font-semibold leading-snug tracking-tight">سالن‌هایی برای سکوت کار، نه نمایش.</p>
           </div>
           <div class="relative min-h-[200px]">
-            <NuxtPicture
-      densities="1x"
+            <CampusMedia
+              fill
               :src="images.library"
               alt="سالن مطالعه با قفسه‌های کتاب و نور طبیعی در مدرسه پردیسان"
-              class="img-cover absolute inset-0"
               width="1400"
               height="933"
               sizes="xs:100vw sm:100vw md:50vw lg:35vw xl:35vw xxl:35vw"
-              loading="lazy"
             />
           </div>
         </div>
       </GlassCard>
 
       <GlassCard :padded="false" class="relative min-h-[240px] overflow-hidden lg:col-span-5">
-        <NuxtPicture
-      densities="1x"
+        <CampusMedia
+          fill
+          picture-class="[&_img]:grayscale"
           :src="images.stairs"
           alt="راهروی معماری با پله‌های سنگی و نورگیر در پردیسان"
-          class="img-cover absolute inset-0 [&_img]:grayscale"
           width="1400"
           height="933"
           sizes="xs:100vw sm:100vw md:50vw lg:30vw xl:30vw xxl:30vw"
-          loading="lazy"
         />
         <div class="absolute inset-0 bg-slate-900/20" />
         <p class="absolute bottom-6 right-6 text-sm font-medium text-white">معماری روزانه</p>

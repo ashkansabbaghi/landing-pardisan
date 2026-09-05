@@ -1,15 +1,17 @@
 <template>
   <section class="relative overflow-hidden rounded-b-[2rem] px-4 pb-16 pt-32 sm:px-10 sm:pb-20 sm:pt-36">
-    <NuxtPicture
-      densities="1x"
+    <CampusMedia
+      fill
+      :shimmer="false"
+      :fade="false"
+      bg-class="bg-ink"
       :src="image"
       :alt="imageAlt"
-      class="img-cover absolute inset-0"
       width="1600"
       height="1067"
       sizes="xs:100vw sm:100vw md:100vw lg:100vw xl:100vw xxl:100vw"
-      :preload="{ fetchPriority: 'high' }"
       loading="eager"
+      :preload="{ fetchPriority: 'high' }"
       :img-attrs="{ fetchpriority: 'high' }"
     />
     <div class="hero-veil absolute inset-0" />
