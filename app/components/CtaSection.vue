@@ -3,19 +3,19 @@
     <div class="mx-auto grid max-w-[1440px] overflow-hidden rounded-[2rem] bg-[#d8e0ea] lg:grid-cols-2">
       <div class="flex flex-col justify-between p-8 sm:p-12 lg:p-16">
         <div>
-          <p class="text-sm text-muted">ثبت‌نام</p>
+          <p class="text-sm text-muted">{{ registerLink.label }}</p>
           <h2 class="mt-4 max-w-[12ch] text-3xl font-semibold leading-tight tracking-tight sm:text-5xl">
             {{ homeCopy.ctaTitle }}
           </h2>
           <p class="mt-5 max-w-md text-sm leading-7 text-muted">
-            {{ homeCopy.ctaBody }}
+            {{ bodyText }}
           </p>
         </div>
         <NuxtLink
-          to="/register"
+          :to="registerLink.to"
           class="mt-10 inline-flex w-fit rounded-full bg-ink px-6 py-3 text-sm font-medium text-white"
         >
-          تماس با مدرسه
+          {{ registerLink.label }}
         </NuxtLink>
       </div>
       <div class="grid grid-cols-2 gap-3 p-4 sm:p-6">
@@ -73,5 +73,10 @@
 </template>
 
 <script setup lang="ts">
-const { homeCopy, images } = useSchoolData()
+const props = defineProps<{
+  body?: string
+}>()
+
+const { homeCopy, images, registerLink } = useSchoolData()
+const bodyText = computed(() => props.body ?? homeCopy.ctaBody)
 </script>

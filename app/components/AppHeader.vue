@@ -18,19 +18,19 @@
             {{ link.label }}
           </NuxtLink>
           <NuxtLink
-            to="/register"
+            :to="registerLink.to"
             class="rounded-full bg-ink px-3.5 py-1.5 text-[12px] font-medium text-white transition hover:bg-ink/90"
-            :class="route.path === '/register' ? 'ring-2 ring-white/70' : ''"
+            :class="route.path === registerLink.to ? 'ring-2 ring-white/70' : ''"
           >
-            ثبت‌نام
+            {{ registerLink.label }}
           </NuxtLink>
         </nav>
 
         <NuxtLink
-          to="/register"
+          :to="registerLink.to"
           class="glass-nav rounded-full px-3.5 py-2 text-xs font-medium text-ink xl:hidden"
         >
-          ثبت‌نام
+          {{ registerLink.label }}
         </NuxtLink>
 
         <button
@@ -58,7 +58,7 @@
     >
       <nav class="flex flex-col gap-1" aria-label="ناوبری موبایل">
         <NuxtLink
-          v-for="link in [...navLinks, { to: '/register', label: 'ثبت‌نام' }]"
+          v-for="link in [...navLinks, registerLink]"
           :key="link.to"
           :to="link.to"
           class="rounded-2xl px-4 py-3 text-sm font-medium text-ink/80"
@@ -74,7 +74,7 @@
 
 <script setup lang="ts">
 const route = useRoute()
-const { navLinks } = useSchoolData()
+const { navLinks, registerLink } = useSchoolData()
 const open = ref(false)
 
 watch(() => route.path, () => {

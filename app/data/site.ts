@@ -23,6 +23,8 @@ export const NAV_LINKS = [
   { to: '/locations', label: 'شعبه‌ها' },
 ] as const
 
+export const REGISTER_LINK = { to: '/register', label: 'ثبت‌نام اولیه' } as const
+
 export const IMAGES = {
   hero: '/images/campus/hero.jpg',
   campusDusk: '/images/campus/campus-dusk.jpg',

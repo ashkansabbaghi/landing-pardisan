@@ -22,13 +22,19 @@
         <LocationCard :branch="branch" />
       </div>
     </section>
+
+    <CtaSection :body="ctaBody" />
   </div>
 </template>
 
 <script setup lang="ts">
 import type { Branch } from '~/types/models'
 
-defineProps<{
+const props = defineProps<{
   branch: Branch
 }>()
+
+const ctaBody = computed(() =>
+  `ثبت‌نام اولیه برای ${props.branch.name}. ظرفیت کلاس‌ها محدود است؛ با دفتر مدرسه یا مشاور تماس بگیرید.`,
+)
 </script>

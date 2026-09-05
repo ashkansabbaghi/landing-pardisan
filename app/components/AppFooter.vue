@@ -21,7 +21,9 @@
               </NuxtLink>
             </li>
             <li>
-              <NuxtLink to="/register" class="text-white/75 transition hover:text-white">ثبت‌نام</NuxtLink>
+              <NuxtLink :to="registerLink.to" class="text-white/75 transition hover:text-white">
+                {{ registerLink.label }}
+              </NuxtLink>
             </li>
           </ul>
         </nav>
@@ -54,5 +56,5 @@
 </template>
 
 <script setup lang="ts">
-const { site, navLinks, branches } = useSchoolData()
+const { site, navLinks, registerLink, branches } = useSchoolData()
 </script>

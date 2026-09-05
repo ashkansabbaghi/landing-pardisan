@@ -39,13 +39,36 @@
 
         <p class="text-sm font-medium text-white/80">{{ site.name }} — {{ site.city }}</p>
         <h1 class="mt-5 max-w-[18ch] text-[2.35rem] font-semibold leading-[1.2] tracking-tight text-white text-balance sm:text-5xl lg:text-[4.1rem] lg:leading-[1.15]">
-          {{ homeCopy.heroTitle }}
+          {{ homeCopy.heroHeadline }}
         </h1>
+        <p class="mt-4 max-w-xl text-base leading-7 text-white/80 sm:text-lg">
+          {{ homeCopy.heroTitle }}
+        </p>
+        <nav class="mt-8 flex flex-wrap items-center gap-2.5" aria-label="مسیر انتخاب شعبه">
+          <NuxtLink
+            to="/middle"
+            class="glass-nav rounded-full px-4 py-2.5 text-sm font-medium text-ink"
+          >
+            متوسطه اول باغستان
+          </NuxtLink>
+          <NuxtLink
+            to="/high"
+            class="glass-nav rounded-full px-4 py-2.5 text-sm font-medium text-ink"
+          >
+            متوسطه دوم عظیمیه
+          </NuxtLink>
+          <NuxtLink
+            :to="registerLink.to"
+            class="rounded-full bg-ink px-4 py-2.5 text-sm font-medium text-white"
+          >
+            {{ registerLink.label }}
+          </NuxtLink>
+        </nav>
       </div>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-const { images, site, homeCopy } = useSchoolData()
+const { images, site, homeCopy, registerLink } = useSchoolData()
 </script>

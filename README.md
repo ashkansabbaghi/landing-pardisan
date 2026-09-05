@@ -28,7 +28,7 @@ npm run preview
 
 سایت به‌صورت ایستا با GitHub Actions روی Pages منتشر می‌شود.
 
-آدرس عمومی: [https://ashkansabbaghi.github.io/landing-pardisan/](https://ashkansabbaghi.github.io/landing-pardisan/)
+مبدأ پیکربندی‌شده (canonical، sitemap، `robots.txt`): [https://pardisan-novin.ir](https://pardisan-novin.ir) — همان `site.url` در `nuxt.config.ts` و `SITE_URL` در `app/data/site.ts`، با `NUXT_APP_BASE_URL=/` در `.github/workflows/deploy-pages.yml`.
 
 یک‌بار در مخزن این را فعال کنید:
 
@@ -37,7 +37,7 @@ npm run preview
 
 پس از push به `main`، گردش‌کار `.github/workflows/deploy-pages.yml` سایت را می‌سازد و منتشر می‌کند. ساخت ایستا به کلیدهای تلگرام نیاز ندارد.
 
-اگر دامنهٔ سفارشی وصل کردید، `app.baseURL` و `site.url` را با همان دامنه هماهنگ کنید.
+اگر مبدأ عوض شد، `site.url` / `SITE_URL`، `robots.txt` و `NUXT_APP_BASE_URL` را با هم عوض کنید.
 
 ## صفحات
 

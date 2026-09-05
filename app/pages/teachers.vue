@@ -10,6 +10,7 @@
     <div class="px-4 py-16 sm:px-6 lg:px-10">
       <TeacherPicker embedded heading="از فهرست انتخاب کنید" />
     </div>
+    <CtaSection />
   </div>
 </template>
 
