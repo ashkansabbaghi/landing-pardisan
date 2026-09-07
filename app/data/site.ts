@@ -1,4 +1,4 @@
-export const SITE_URL = 'https://pardisan-novin.ir'
+export const SITE_URL = 'https://www.pardisan-novin.ir'
 
 export const SITE = {
   name: 'مدرسه پردیسان',

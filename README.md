@@ -28,7 +28,7 @@ npm run preview
 
 سایت به‌صورت ایستا با GitHub Actions روی Pages منتشر می‌شود.
 
-مبدأ پیکربندی‌شده (canonical، sitemap، `robots.txt`): [https://pardisan-novin.ir](https://pardisan-novin.ir) — همان `site.url` در `nuxt.config.ts` و `SITE_URL` در `app/data/site.ts`، با `NUXT_APP_BASE_URL=/` در `.github/workflows/deploy-pages.yml`.
+مبدأ پیکربندی‌شده (canonical، sitemap، `robots.txt`): [https://www.pardisan-novin.ir](https://www.pardisan-novin.ir) — همان `site.url` در `nuxt.config.ts` و `SITE_URL` در `app/data/site.ts`، با `NUXT_APP_BASE_URL=/` در `.github/workflows/deploy-pages.yml`.
 
 یک‌بار در مخزن این را فعال کنید:
 

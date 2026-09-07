@@ -16,4 +16,5 @@
 
 <script setup lang="ts">
 useSchoolJsonLd()
+useSiteVerification()
 </script>

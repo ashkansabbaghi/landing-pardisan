@@ -22,6 +22,7 @@
       </div>
       <div class="relative">
         <RegisterContacts />
+        <ParentsFaq />
         <p class="mx-auto mt-6 max-w-xl text-center text-xs leading-6 text-muted">
           <NuxtLink
             to="/register/thanks"
@@ -36,11 +37,15 @@
 </template>
 
 <script setup lang="ts">
+import { parentsFaq } from '~/data/faq'
+
 const { images } = useSchoolData()
 
 usePageSeo({
   title: 'ثبت‌نام اولیه',
-  description: 'شماره‌های تماس شعبه‌ها و افراد پذیرش مدرسه پردیسان در کرج برای ثبت‌نام اولیه متوسطه اول و دوم. این صفحه فرم ارسال ندارد.',
+  description: 'شماره‌های تماس شعبه‌ها و پرسش‌های رایج اولیا برای ثبت‌نام اولیه متوسطه اول و دوم مدرسه پردیسان در گوهردشت کرج.',
   path: '/register',
 })
+
+useFaqPageJsonLd(parentsFaq)
 </script>

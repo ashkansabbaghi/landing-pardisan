@@ -1,7 +1,7 @@
 import { joinURL } from 'ufo'
 import tailwindcss from '@tailwindcss/vite'
 
-const siteOrigin = 'https://pardisan-novin.ir'
+const siteOrigin = 'https://www.pardisan-novin.ir'
 const isDev = process.env.NODE_ENV === 'development'
 const isProd = process.env.NODE_ENV === 'production'
 const siteUrl = siteOrigin
@@ -70,6 +70,7 @@ export default defineNuxtConfig({
     telegramChatId: process.env.TELEGRAM_CHAT_ID || '',
     public: {
       siteUrl,
+      googleSiteVerification: process.env.NUXT_PUBLIC_GOOGLE_SITE_VERIFICATION || '',
     },
   },
   site: {

@@ -88,3 +88,43 @@ export function useSchoolJsonLd() {
     ],
   })
 }
+
+export function useSiteVerification() {
+  const config = useRuntimeConfig()
+  const token = config.public.googleSiteVerification
+  if (!token) {
+    return
+  }
+  useHead({
+    meta: [{ name: 'google-site-verification', content: String(token) }],
+  })
+}
+
+export function useFaqPageJsonLd(items: { question: string; answer: string }[]) {
+  if (!items.length) {
+    return
+  }
+
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: items.map(item => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer,
+      },
+    })),
+  }
+
+  useHead({
+    script: [
+      {
+        type: 'application/ld+json',
+        children: JSON.stringify(schema),
+        key: 'faq-jsonld',
+      },
+    ],
+  })
+}
