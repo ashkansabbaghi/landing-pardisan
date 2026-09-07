@@ -73,7 +73,7 @@ export function useSchoolJsonLd() {
         streetAddress: branch.address,
         addressLocality: SITE.city,
         addressRegion: 'البرز',
-        postalCode: branch.postalCode,
+        ...(branch.postalCode ? { postalCode: branch.postalCode } : {}),
         addressCountry: 'IR',
       },
     })),

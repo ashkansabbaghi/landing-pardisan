@@ -9,7 +9,7 @@ const branch = getBranch('middle')
 
 usePageSeo({
   title: 'متوسطه اول — شعبه ۱',
-  description: 'شعبه ۱ مدرسه پردیسان در باغستان کرج؛ متوسطه اول (راهنمایی)، پایه‌های هفتم تا نهم، کلاس‌های کم‌جمعیت.',
+  description: 'شعبه ۱ مدرسه پردیسان در گوهردشت کرج؛ متوسطه اول (راهنمایی)، پایه‌های هفتم تا نهم، کلاس‌های کم‌جمعیت.',
   path: '/middle',
   image: branch.image,
   imageAlt: branch.imageAlt,

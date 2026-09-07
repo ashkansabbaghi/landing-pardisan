@@ -9,7 +9,7 @@ const branch = getBranch('high')
 
 usePageSeo({
   title: 'متوسطه دوم — شعبه ۲',
-  description: 'شعبه ۲ مدرسه پردیسان در عظیمیه کرج؛ متوسطه دوم (دبیرستان)، پایه‌های دهم تا دوازدهم، مسیر کنکور و المپیاد.',
+  description: 'شعبه ۲ مدرسه پردیسان در گوهردشت کرج؛ متوسطه دوم (دبیرستان)، پایه‌های دهم تا دوازدهم، مسیر کنکور و المپیاد.',
   path: '/high',
   image: branch.image,
   imageAlt: branch.imageAlt,

@@ -51,13 +51,13 @@
             to="/middle"
             class="glass-nav rounded-full px-4 py-2.5 text-sm font-medium text-ink"
           >
-            متوسطه اول باغستان
+            متوسطه اول گوهردشت
           </NuxtLink>
           <NuxtLink
             to="/high"
             class="glass-nav rounded-full px-4 py-2.5 text-sm font-medium text-ink"
           >
-            متوسطه دوم عظیمیه
+            متوسطه دوم گوهردشت
           </NuxtLink>
           <NuxtLink
             :to="registerLink.to"

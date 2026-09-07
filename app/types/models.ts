@@ -42,7 +42,7 @@ export interface Branch {
   address: string
   neighborhood: string
   city: string
-  postalCode: string
+  postalCode?: string
   phone: string
   phoneHref: string
   mapUrl: string
