@@ -43,7 +43,7 @@ export default defineNuxtConfig({
   devtools: { enabled: false },
   ssr: true,
   css: ['~/assets/css/main.css'],
-  modules: ['@nuxtjs/sitemap', '@nuxt/image'],
+  modules: ['@nuxtjs/sitemap'],
   vite: {
     plugins: [tailwindcss()],
   },
@@ -93,18 +93,6 @@ export default defineNuxtConfig({
       '/register',
     ],
   },
-  image: {
-    quality: 70,
-    format: ['avif', 'webp'],
-    screens: {
-      xs: 360,
-      sm: 640,
-      md: 768,
-      lg: 1024,
-      xl: 1280,
-      xxl: 1600,
-    },
-  },
   nitro: {
     compressPublicAssets: true,
     prerender: {
@@ -122,11 +110,6 @@ export default defineNuxtConfig({
         prerender: false,
       },
       '/images/**': {
-        headers: {
-          'Cache-Control': mediaCache,
-        },
-      },
-      '/_ipx/**': {
         headers: {
           'Cache-Control': mediaCache,
         },

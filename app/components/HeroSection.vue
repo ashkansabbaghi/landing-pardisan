@@ -2,6 +2,7 @@
   <section class="relative min-h-[88vh] overflow-hidden rounded-b-[2rem] sm:min-h-screen sm:rounded-b-[2.5rem]">
     <CampusMedia
       fill
+      soft-blur
       :shimmer="false"
       :fade="false"
       bg-class="bg-ink"
@@ -9,7 +10,6 @@
       alt="نمای معماری ساختمان مدرسه پردیسان در غروب، با نورهای داخلی روشن"
       width="1920"
       height="1280"
-      sizes="xs:100vw sm:100vw md:100vw lg:100vw xl:100vw xxl:100vw"
       :defer="false"
       loading="eager"
       :preload="{ fetchPriority: 'high' }"
@@ -41,10 +41,10 @@
         </svg>
 
         <p class="text-sm font-medium text-white/80">{{ site.name }} — {{ site.city }}</p>
-        <h1 class="mt-5 max-w-[18ch] text-[2.35rem] font-semibold leading-[1.2] tracking-tight text-white text-balance sm:text-5xl lg:text-[4.1rem] lg:leading-[1.15]">
+        <h1 class="hero-copy-shadow mt-5 max-w-[18ch] text-[2.35rem] font-semibold leading-[1.2] tracking-tight text-white text-balance sm:text-5xl lg:text-[4.1rem] lg:leading-[1.15]">
           {{ homeCopy.heroHeadline }}
         </h1>
-        <p class="mt-4 max-w-xl text-base leading-7 text-white/80 sm:text-lg">
+        <p class="hero-copy-shadow mt-4 max-w-xl text-base leading-7 text-white/80 sm:text-lg">
           {{ homeCopy.heroTitle }}
         </p>
         <nav class="mt-8 flex flex-wrap items-center gap-2.5" aria-label="مسیر انتخاب شعبه">

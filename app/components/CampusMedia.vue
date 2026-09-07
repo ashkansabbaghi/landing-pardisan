@@ -5,25 +5,25 @@
       'campus-media overflow-hidden',
       fill ? 'absolute inset-0' : ['relative', aspect],
       bgClass,
+      softBlur && 'campus-media--soft-blur',
       shimmer && shouldLoad && 'campus-media--shimmer',
       fade && shouldLoad && 'campus-media--fade',
       loaded && 'is-loaded',
     ]"
   >
-    <NuxtPicture
+    <img
       v-if="shouldLoad"
-      :densities="densities"
       :src="src"
       :alt="alt"
       :width="width"
       :height="height"
-      :sizes="sizes"
-      :quality="quality"
       :loading="loading"
-      :preload="preload"
-      :img-attrs="imgAttrs"
+      :fetchpriority="fetchPriority"
+      decoding="async"
       :class="['img-cover absolute inset-0', pictureClass]"
-    />
+      @load="markLoaded"
+      @error="markLoaded"
+    >
   </div>
 </template>
 
@@ -32,8 +32,7 @@ const props = withDefaults(defineProps<{
   src: string
   alt: string
   width: number | string
-  height: number | string
-  sizes: string
+  sizes?: string
   fill?: boolean
   aspect?: string
   shimmer?: boolean
@@ -44,10 +43,9 @@ const props = withDefaults(defineProps<{
   preload?: boolean | { fetchPriority?: 'high' | 'low' | 'auto' }
   imgAttrs?: Record<string, string>
   pictureClass?: string
-  /** Override @nuxt/image quality (default 75 in config). Use ~60 for decorative backgrounds. */
   quality?: number
-  /** Defer mounting NuxtPicture until near viewport. Off for LCP/eager heroes. */
   defer?: boolean
+  softBlur?: boolean
 }>(), {
   fill: false,
   shimmer: true,
@@ -57,59 +55,39 @@ const props = withDefaults(defineProps<{
   densities: '1x',
   quality: undefined,
   defer: undefined,
+  softBlur: false,
+  sizes: '100vw',
 })
 
 const rootRef = ref<HTMLElement | null>(null)
 const loaded = ref(false)
-let boundImg: HTMLImageElement | null = null
 let observer: IntersectionObserver | null = null
 
 const shouldDefer = computed(() => {
-  if (props.defer === false) {
-    return false
-  }
-  if (props.defer === true) {
-    return true
-  }
-  // Default: defer lazy images; never defer eager/preloaded LCP media
+  if (props.defer === false) return false
+  if (props.defer === true) return true
   return props.loading !== 'eager' && !props.preload
 })
 
 const shouldLoad = ref(!shouldDefer.value)
 
+const fetchPriority = computed(() => {
+  if (props.imgAttrs?.fetchpriority) {
+    return props.imgAttrs.fetchpriority as 'high' | 'low' | 'auto'
+  }
+  if (typeof props.preload === 'object' && props.preload.fetchPriority) {
+    return props.preload.fetchPriority
+  }
+  if (props.preload) return 'high'
+  return undefined
+})
+
 function markLoaded() {
   loaded.value = true
 }
 
-function attachLoad() {
-  if (!shouldLoad.value) {
-    return
-  }
-  if (!props.fade && !props.shimmer) {
-    loaded.value = true
-    return
-  }
-
-  const img = rootRef.value?.querySelector('img')
-  if (!img || img === boundImg) {
-    return
-  }
-
-  boundImg = img
-
-  if (img.complete && img.naturalWidth > 0) {
-    markLoaded()
-    return
-  }
-
-  img.addEventListener('load', markLoaded, { once: true })
-  img.addEventListener('error', markLoaded, { once: true })
-}
-
 function startObserver() {
-  if (!shouldDefer.value || shouldLoad.value || !rootRef.value) {
-    return
-  }
+  if (!shouldDefer.value || shouldLoad.value || !rootRef.value) return
   if (typeof IntersectionObserver === 'undefined') {
     shouldLoad.value = true
     return
@@ -120,7 +98,6 @@ function startObserver() {
         shouldLoad.value = true
         observer?.disconnect()
         observer = null
-        nextTick(attachLoad)
       }
     },
     { rootMargin: '240px 0px', threshold: 0.01 },
@@ -130,24 +107,25 @@ function startObserver() {
 
 watch(() => props.src, () => {
   loaded.value = false
-  boundImg = null
-  nextTick(attachLoad)
-})
-
-watch(shouldLoad, (value) => {
-  if (value) {
-    nextTick(attachLoad)
-  }
 })
 
 onMounted(() => {
+  if (props.preload) {
+    useHead({
+      link: [{
+        rel: 'preload',
+        as: 'image',
+        href: props.src,
+        fetchpriority: fetchPriority.value || 'high',
+      }],
+    })
+  }
   nextTick(() => {
     startObserver()
-    attachLoad()
+    const img = rootRef.value?.querySelector('img')
+    if (img && img.complete && img.naturalWidth > 0) markLoaded()
   })
 })
-
-onUpdated(attachLoad)
 
 onBeforeUnmount(() => {
   observer?.disconnect()
@@ -155,54 +133,35 @@ onBeforeUnmount(() => {
 })
 </script>
 
-<style scoped>
-.campus-media {
-  isolation: isolate;
-}
 
-.campus-media--shimmer:not(.is-loaded)::after {
-  content: "";
+<style scoped>
+.campus-media--shimmer:not(.is-loaded)::before {
+  content: '';
   position: absolute;
   inset: 0;
-  z-index: 0;
+  background: linear-gradient(110deg, transparent 30%, rgb(255 255 255 / 0.35) 50%, transparent 70%);
+  background-size: 200% 100%;
+  animation: campus-media-shimmer 1.4s ease-in-out infinite;
   pointer-events: none;
-  background: linear-gradient(
-    90deg,
-    rgb(215 224 234 / 0) 0%,
-    rgb(255 255 255 / 0.55) 50%,
-    rgb(215 224 234 / 0) 100%
-  );
-  transform: translateX(-100%);
-  animation: campus-media-shimmer 1.35s ease-in-out infinite;
-}
-
-.campus-media :deep(picture) {
   z-index: 1;
 }
 
-.campus-media--fade :deep(img) {
+.campus-media--fade .img-cover {
   opacity: 0;
-  transition: opacity 0.35s ease;
+  transition: opacity 0.45s ease;
 }
 
-.campus-media--fade.is-loaded :deep(img) {
+.campus-media--fade.is-loaded .img-cover {
   opacity: 1;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .campus-media--shimmer:not(.is-loaded)::after {
-    content: none;
-    animation: none;
-  }
-
-  .campus-media--fade :deep(img) {
-    transition: none;
-  }
+.campus-media--soft-blur .img-cover {
+  filter: blur(2px);
+  transform: scale(1.02);
 }
 
 @keyframes campus-media-shimmer {
-  100% {
-    transform: translateX(100%);
-  }
+  0% { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
 }
 </style>
