@@ -26,7 +26,8 @@
             alt="نمای ساختمان شعبه دو پردیسان"
             width="1600"
             height="1067"
-            sizes="xs:50vw sm:50vw md:50vw lg:25vw xl:25vw xxl:25vw"
+            sizes="xs:50vw sm:50vw md:50vw lg:25vw xl:320px"
+            :quality="60"
           />
         </div>
         <div class="mt-8 overflow-hidden rounded-3xl">
@@ -36,7 +37,8 @@
             alt="سالن مطالعه پردیسان"
             width="1400"
             height="933"
-            sizes="xs:50vw sm:50vw md:50vw lg:25vw xl:25vw xxl:25vw"
+            sizes="xs:50vw sm:50vw md:50vw lg:25vw xl:320px"
+            :quality="60"
           />
         </div>
         <div class="-mt-8 overflow-hidden rounded-3xl">
@@ -46,7 +48,8 @@
             alt="جزئیات معماری راهرو پردیسان"
             width="1400"
             height="933"
-            sizes="xs:50vw sm:50vw md:50vw lg:25vw xl:25vw xxl:25vw"
+            sizes="xs:50vw sm:50vw md:50vw lg:25vw xl:320px"
+            :quality="60"
           />
         </div>
         <div class="overflow-hidden rounded-3xl">
@@ -56,7 +59,8 @@
             alt="پنجره‌های بلند ساختمان آموزشی"
             width="1400"
             height="1336"
-            sizes="xs:50vw sm:50vw md:50vw lg:25vw xl:25vw xxl:25vw"
+            sizes="xs:50vw sm:50vw md:50vw lg:25vw xl:320px"
+            :quality="60"
           />
         </div>
       </div>

@@ -1,17 +1,10 @@
 <template>
   <section :class="embedded ? 'px-4 py-16 sm:px-6 lg:px-10' : 'relative overflow-hidden px-4 py-20 sm:px-6 lg:px-10'">
-    <div v-if="!embedded" class="absolute inset-0">
-      <CampusMedia
-        fill
-        :shimmer="false"
-        :src="images.corridor"
-        alt="راهروی روشن اداری با شیشه و بتن در پردیسان"
-        width="1400"
-        height="935"
-        sizes="xs:100vw sm:100vw md:100vw lg:100vw xl:100vw xxl:100vw"
-      />
-      <div class="absolute inset-0 bg-mist/78" />
-    </div>
+    <div
+      v-if="!embedded"
+      class="absolute inset-0 bg-gradient-to-b from-fog/80 via-mist to-mist"
+      aria-hidden="true"
+    />
 
     <div class="relative mx-auto max-w-[1440px]">
       <div class="mb-12 text-center">
@@ -93,7 +86,7 @@ const props = withDefaults(defineProps<{
   embedded: false,
 })
 
-const { staffMembers, images, homeCopy } = useSchoolData()
+const { staffMembers, homeCopy } = useSchoolData()
 const items = computed(() => props.items ?? staffMembers)
 const heading = computed(() => props.heading ?? homeCopy.staffHeading)
 const selectedIndex = ref(2)

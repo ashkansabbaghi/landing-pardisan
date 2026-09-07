@@ -8,18 +8,10 @@
       image-alt="نمای معماری شهری ملایم، فضای اطراف پردیسان در کرج"
     />
     <section class="relative px-4 py-16 sm:px-6 lg:px-10">
-      <div class="absolute inset-0 overflow-hidden">
-        <CampusMedia
-          fill
-          :shimmer="false"
-          :src="images.campusDusk"
-          alt=""
-          width="1600"
-          height="1069"
-          sizes="xs:100vw sm:100vw md:100vw lg:100vw xl:100vw xxl:100vw"
-        />
-        <div class="absolute inset-0 bg-mist/65" />
-      </div>
+      <div
+        class="absolute inset-0 bg-gradient-to-b from-fog/70 via-mist to-mist"
+        aria-hidden="true"
+      />
       <div class="relative">
         <RegisterContacts />
         <ParentsFaq />

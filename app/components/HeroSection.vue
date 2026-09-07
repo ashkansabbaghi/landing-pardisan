@@ -10,6 +10,7 @@
       width="1920"
       height="1280"
       sizes="xs:100vw sm:100vw md:100vw lg:100vw xl:100vw xxl:100vw"
+      :defer="false"
       loading="eager"
       :preload="{ fetchPriority: 'high' }"
       :img-attrs="{ fetchpriority: 'high' }"

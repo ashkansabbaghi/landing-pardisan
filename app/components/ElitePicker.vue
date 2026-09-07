@@ -1,17 +1,10 @@
 <template>
   <section :class="embedded ? '' : 'relative px-4 py-20 sm:px-6 lg:px-10'">
-    <div v-if="!embedded" class="absolute inset-0 overflow-hidden">
-      <CampusMedia
-        fill
-        :shimmer="false"
-        :src="images.windows"
-        alt="نمای پنجره‌های مدرن ساختمان آموزشی پردیسان"
-        width="1400"
-        height="1336"
-        sizes="xs:100vw sm:100vw md:100vw lg:100vw xl:100vw xxl:100vw"
-      />
-      <div class="absolute inset-0 bg-mist/70" />
-    </div>
+    <div
+      v-if="!embedded"
+      class="absolute inset-0 bg-gradient-to-b from-fog/70 via-mist to-mist"
+      aria-hidden="true"
+    />
 
     <div class="relative mx-auto max-w-[1440px]">
       <div class="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
@@ -55,7 +48,8 @@
             :alt="selected.photoAlt"
             width="900"
             height="1350"
-            sizes="xs:100vw sm:100vw md:100vw lg:66vw xl:66vw xxl:66vw"
+            sizes="xs:100vw sm:100vw md:100vw lg:66vw xl:720px"
+            :quality="65"
           />
           <div class="pointer-events-none absolute inset-x-0 bottom-0 h-[38%] bg-gradient-to-t from-slate-900/90 via-slate-900/50 to-transparent" aria-hidden="true" />
           <div class="absolute inset-x-0 bottom-0 px-5 pb-5 sm:px-8 sm:pb-8">
@@ -98,7 +92,7 @@ const props = withDefaults(defineProps<{
   embedded: false,
 })
 
-const { eliteStudents, images, homeCopy } = useSchoolData()
+const { eliteStudents, homeCopy } = useSchoolData()
 const items = computed(() => props.items ?? eliteStudents)
 const heading = computed(() => props.heading ?? homeCopy.eliteHeading)
 const selectedIndex = ref(0)

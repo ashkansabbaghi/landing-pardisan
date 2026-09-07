@@ -5,18 +5,20 @@
       'campus-media overflow-hidden',
       fill ? 'absolute inset-0' : ['relative', aspect],
       bgClass,
-      shimmer && 'campus-media--shimmer',
-      fade && 'campus-media--fade',
+      shimmer && shouldLoad && 'campus-media--shimmer',
+      fade && shouldLoad && 'campus-media--fade',
       loaded && 'is-loaded',
     ]"
   >
     <NuxtPicture
+      v-if="shouldLoad"
       :densities="densities"
       :src="src"
       :alt="alt"
       :width="width"
       :height="height"
       :sizes="sizes"
+      :quality="quality"
       :loading="loading"
       :preload="preload"
       :img-attrs="imgAttrs"
@@ -42,6 +44,10 @@ const props = withDefaults(defineProps<{
   preload?: boolean | { fetchPriority?: 'high' | 'low' | 'auto' }
   imgAttrs?: Record<string, string>
   pictureClass?: string
+  /** Override @nuxt/image quality (default 75 in config). Use ~60 for decorative backgrounds. */
+  quality?: number
+  /** Defer mounting NuxtPicture until near viewport. Off for LCP/eager heroes. */
+  defer?: boolean
 }>(), {
   fill: false,
   shimmer: true,
@@ -49,17 +55,36 @@ const props = withDefaults(defineProps<{
   bgClass: 'bg-fog',
   loading: 'lazy',
   densities: '1x',
+  quality: undefined,
+  defer: undefined,
 })
 
 const rootRef = ref<HTMLElement | null>(null)
 const loaded = ref(false)
 let boundImg: HTMLImageElement | null = null
+let observer: IntersectionObserver | null = null
+
+const shouldDefer = computed(() => {
+  if (props.defer === false) {
+    return false
+  }
+  if (props.defer === true) {
+    return true
+  }
+  // Default: defer lazy images; never defer eager/preloaded LCP media
+  return props.loading !== 'eager' && !props.preload
+})
+
+const shouldLoad = ref(!shouldDefer.value)
 
 function markLoaded() {
   loaded.value = true
 }
 
 function attachLoad() {
+  if (!shouldLoad.value) {
+    return
+  }
   if (!props.fade && !props.shimmer) {
     loaded.value = true
     return
@@ -81,17 +106,53 @@ function attachLoad() {
   img.addEventListener('error', markLoaded, { once: true })
 }
 
+function startObserver() {
+  if (!shouldDefer.value || shouldLoad.value || !rootRef.value) {
+    return
+  }
+  if (typeof IntersectionObserver === 'undefined') {
+    shouldLoad.value = true
+    return
+  }
+  observer = new IntersectionObserver(
+    (entries) => {
+      if (entries.some(entry => entry.isIntersecting || entry.intersectionRatio > 0)) {
+        shouldLoad.value = true
+        observer?.disconnect()
+        observer = null
+        nextTick(attachLoad)
+      }
+    },
+    { rootMargin: '240px 0px', threshold: 0.01 },
+  )
+  observer.observe(rootRef.value)
+}
+
 watch(() => props.src, () => {
   loaded.value = false
   boundImg = null
   nextTick(attachLoad)
 })
 
+watch(shouldLoad, (value) => {
+  if (value) {
+    nextTick(attachLoad)
+  }
+})
+
 onMounted(() => {
-  nextTick(attachLoad)
+  nextTick(() => {
+    startObserver()
+    attachLoad()
+  })
 })
 
 onUpdated(attachLoad)
+
+onBeforeUnmount(() => {
+  observer?.disconnect()
+  observer = null
+})
 </script>
 
 <style scoped>

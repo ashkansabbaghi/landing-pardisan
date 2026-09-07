@@ -1,17 +1,9 @@
 <template>
   <section class="relative px-4 py-16 sm:px-6 sm:py-24 lg:px-10">
-    <div class="absolute inset-0 overflow-hidden">
-      <CampusMedia
-        fill
-        :shimmer="false"
-        :src="images.campusDusk"
-        alt="محوطه و نمای معماری پردیسان با نور ملایم"
-        width="1600"
-        height="1069"
-        sizes="xs:100vw sm:100vw md:100vw lg:100vw xl:100vw xxl:100vw"
-      />
-      <div class="absolute inset-0 bg-mist/55 backdrop-blur-[2px]" />
-    </div>
+    <div
+      class="absolute inset-0 bg-gradient-to-b from-fog/80 via-mist to-mist"
+      aria-hidden="true"
+    />
 
     <div class="relative mx-auto grid max-w-[1440px] gap-5 lg:grid-cols-12 lg:grid-rows-2 lg:gap-6">
       <GlassCard class="flex min-h-[280px] flex-col justify-between lg:col-span-5 lg:row-span-2 lg:min-h-[540px]">
@@ -62,7 +54,8 @@
               alt="سالن مطالعه با قفسه‌های کتاب و نور طبیعی در مدرسه پردیسان"
               width="1400"
               height="933"
-              sizes="xs:100vw sm:100vw md:50vw lg:35vw xl:35vw xxl:35vw"
+              :quality="60"
+              sizes="xs:100vw sm:100vw md:50vw lg:35vw xl:640px"
             />
           </div>
         </div>
@@ -76,7 +69,8 @@
           alt="راهروی معماری با پله‌های سنگی و نورگیر در پردیسان"
           width="1400"
           height="933"
-          sizes="xs:100vw sm:100vw md:50vw lg:30vw xl:30vw xxl:30vw"
+          :quality="60"
+          sizes="xs:100vw sm:100vw md:50vw lg:30vw xl:480px"
         />
         <div class="absolute inset-0 bg-slate-900/20" />
         <p class="absolute bottom-6 right-6 text-sm font-medium text-white">معماری روزانه</p>

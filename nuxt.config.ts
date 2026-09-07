@@ -94,7 +94,7 @@ export default defineNuxtConfig({
     ],
   },
   image: {
-    quality: 75,
+    quality: 70,
     format: ['avif', 'webp'],
     screens: {
       xs: 360,
@@ -102,7 +102,7 @@ export default defineNuxtConfig({
       md: 768,
       lg: 1024,
       xl: 1280,
-      xxl: 1920,
+      xxl: 1600,
     },
   },
   nitro: {
