@@ -8,6 +8,7 @@
     </p>
     <div class="mt-8 space-y-3">
       <details
+        name="parents-faq"
         v-for="(item, index) in items"
         :key="item.question"
         class="group rounded-2xl border border-ink/10 bg-white/55 px-5 py-4 backdrop-blur-xl open:bg-white/70"

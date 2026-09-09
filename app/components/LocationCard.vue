@@ -28,7 +28,7 @@
           target="_blank"
           rel="noreferrer"
         >
-          نقشه گوگل
+          مسیریابی در گوگل مپ
         </a>
         <NuxtLink
           :to="`/${branch.slug}`"

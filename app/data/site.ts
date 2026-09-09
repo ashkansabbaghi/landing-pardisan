@@ -7,7 +7,7 @@ export const SITE = {
   country: 'ایران',
   locale: 'fa_IR',
   email: 'info@pardisan.ir',
-  instagram: 'https://instagram.com/pardisan.school',
+  instagram: 'https://www.instagram.com/pardisan.highschool',
   defaultOgImage: '/images/campus/hero.jpg',
   foundingYear: 1392,
 } as const
