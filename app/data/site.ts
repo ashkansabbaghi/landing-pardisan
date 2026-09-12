@@ -6,7 +6,7 @@ export const SITE = {
   city: 'کرج',
   country: 'ایران',
   locale: 'fa_IR',
-  email: 'info@pardisan.ir',
+  email: 'pardisannovin1395@gmail.com',
   instagram: 'https://www.instagram.com/pardisan.highschool',
   defaultOgImage: '/images/campus/hero.jpg',
   foundingYear: 1392,
