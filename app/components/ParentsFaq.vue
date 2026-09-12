@@ -4,7 +4,7 @@
       پرسش‌های رایج اولیا
     </h2>
     <p class="mx-auto mt-3 max-w-xl text-center text-sm leading-7 text-muted">
-      پاسخ کوتاه برای تصمیم ثبت‌نام؛ جزئیات بیشتر را از دفتر شعبه بپرسید.
+      پاسخ کوتاه برای تصمیم ثبت‌نام؛ جزئیات بیشتر را از پروین رنجبر بپرسید.
     </p>
     <div class="mt-8 space-y-3">
       <details

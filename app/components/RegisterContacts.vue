@@ -4,7 +4,7 @@
       <p class="text-xs font-medium text-muted">ارتباط با مدرسه</p>
       <h2 class="mt-3 text-2xl font-semibold tracking-tight">شماره‌ها و افراد پذیرش</h2>
       <p class="mt-4 text-sm leading-7 text-muted">
-        برای ثبت‌نام اولیه و هماهنگی جلسه، با دفتر شعبه تماس بگیرید. ظرفیت کلاس‌ها محدود است و تماس به‌معنای قطعی شدن ثبت‌نام نیست.
+        برای ثبت‌نام اولیه و هماهنگی جلسه، با پروین رنجبر تماس بگیرید. ظرفیت کلاس‌ها محدود است و تماس به‌معنای قطعی شدن ثبت‌نام نیست.
       </p>
 
       <div class="mt-8 space-y-5">
@@ -25,9 +25,14 @@
 
       <div class="mt-8 space-y-5 border-t border-ink/10 pt-8">
         <p class="text-sm font-medium">افراد برای ارتباط</p>
-        <div v-for="person in contactPeople" :key="person.id">
-          <p class="mb-2 block text-sm font-medium text-muted">{{ person.role }}</p>
-          <p class="field">{{ person.name }}</p>
+        <div>
+          <p class="field">{{ contactPerson.name }}</p>
+          <a
+            :href="contactPerson.phoneHref"
+            class="field mt-2 flex text-left no-underline"
+            dir="ltr"
+            :aria-label="`تماس با ${contactPerson.name}`"
+          >{{ toPersianDigits(contactPerson.phone) }}</a>
         </div>
       </div>
 
@@ -44,13 +49,13 @@
 </template>
 
 <script setup lang="ts">
-const CONTACT_STAFF_IDS = ['farhad', 'leila', 'saeed', 'zahra', 'shima'] as const
+const { branches, site } = useSchoolData()
 
-const { branches, staffMembers, site } = useSchoolData()
-
-const contactPeople = computed(() =>
-  staffMembers.filter(member => (CONTACT_STAFF_IDS as readonly string[]).includes(member.id)),
-)
+const contactPerson = {
+  name: 'پروین رنجبر',
+  phone: '09124669049',
+  phoneHref: 'tel:+989124669049',
+} as const
 </script>
 
 <style scoped>
