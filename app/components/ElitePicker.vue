@@ -41,14 +41,18 @@
         </ul>
 
         <article
-          class="relative overflow-hidden rounded-[1.75rem] lg:col-span-8"
+          class="relative overflow-hidden rounded-[1.75rem] border border-ink/8 lg:col-span-8"
           :class="panelTone"
         >
-          <div class="pointer-events-none absolute inset-0 opacity-80" :class="panelGlow" aria-hidden="true" />
+          <div class="pointer-events-none absolute inset-0" :class="panelGlow" aria-hidden="true" />
           <div class="relative flex min-h-[280px] flex-col justify-end p-6 sm:min-h-[320px] sm:p-8 lg:p-10">
-            <p class="text-xs font-medium text-ink/55">{{ roleLine }}</p>
-            <h3 class="mt-3 text-2xl font-semibold tracking-tight text-ink sm:text-3xl">{{ selected.name }}</h3>
-            <p class="mt-4 max-w-2xl text-sm leading-7 text-ink/75 sm:text-base">{{ appreciationLine }}</p>
+            <h3 class="text-2xl font-semibold tracking-tight text-ink sm:text-3xl">{{ selected.name }}</h3>
+            <p
+              class="mt-4 inline-flex max-w-full w-fit rounded-full border border-ink/10 bg-white/55 px-3.5 py-1.5 text-sm font-medium leading-6 text-ink/85 backdrop-blur-sm sm:text-base"
+            >
+              {{ roleLine }}
+            </p>
+            <p class="mt-4 max-w-2xl text-sm leading-7 text-ink/60 sm:text-[0.95rem]">{{ appreciationLine }}</p>
           </div>
         </article>
       </div>
@@ -86,23 +90,22 @@ const selectedIndex = ref(0)
 const selected = computed(() => items.value[selectedIndex.value] ?? items.value[0])
 
 const panelTone = computed(() => {
+  // Soft pastel washes — equal weight, school-calm (blue / sage / lilac / sand)
   const list = [
-    'bg-gradient-to-br from-[#d8e0ea] via-white/85 to-[#eef2f6]',
-    'bg-gradient-to-br from-[#e7edf5] via-[#f7f9fb] to-[#dfe7f1]',
-    'bg-gradient-to-br from-[#edf1f6] via-white to-[#d5dee9]',
-    'bg-gradient-to-br from-[#e2eaf3] via-[#f4f7fa] to-[#cfd9e6]',
-    'bg-gradient-to-br from-[#dbe4ef] via-white/90 to-[#e8eef5]',
+    'bg-gradient-to-br from-sky-100/70 via-white/90 to-slate-50',
+    'bg-gradient-to-br from-emerald-50/80 via-white/90 to-slate-50',
+    'bg-gradient-to-br from-violet-50/80 via-white/90 to-slate-50',
+    'bg-gradient-to-br from-amber-50/75 via-white/90 to-slate-50',
   ]
   return list[selectedIndex.value % list.length]
 })
 
 const panelGlow = computed(() => {
   const list = [
-    'bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.9),transparent_55%)]',
-    'bg-[radial-gradient(circle_at_80%_15%,rgba(255,255,255,0.85),transparent_50%)]',
-    'bg-[radial-gradient(circle_at_30%_80%,rgba(255,255,255,0.8),transparent_55%)]',
-    'bg-[radial-gradient(circle_at_70%_70%,rgba(255,255,255,0.75),transparent_50%)]',
-    'bg-[radial-gradient(circle_at_50%_30%,rgba(255,255,255,0.9),transparent_55%)]',
+    'bg-[radial-gradient(circle_at_18%_20%,rgba(125,211,252,0.28),transparent_58%)]',
+    'bg-[radial-gradient(circle_at_82%_18%,rgba(167,243,208,0.28),transparent_55%)]',
+    'bg-[radial-gradient(circle_at_22%_78%,rgba(196,181,253,0.26),transparent_58%)]',
+    'bg-[radial-gradient(circle_at_78%_72%,rgba(253,230,138,0.24),transparent_55%)]',
   ]
   return list[selectedIndex.value % list.length]
 })
