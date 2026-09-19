@@ -48,7 +48,7 @@
           <div class="relative flex min-h-[280px] flex-col justify-end p-6 sm:min-h-[320px] sm:p-8 lg:p-10">
             <p class="text-xs font-medium text-ink/55">{{ roleLine }}</p>
             <h3 class="mt-3 text-2xl font-semibold tracking-tight text-ink sm:text-3xl">{{ selected.name }}</h3>
-            <p class="mt-4 max-w-2xl text-sm leading-7 text-ink/75 sm:text-base">«{{ quoteLine }}»</p>
+            <p class="mt-4 max-w-2xl text-sm leading-7 text-ink/75 sm:text-base">{{ appreciationLine }}</p>
           </div>
         </article>
       </div>
@@ -75,7 +75,7 @@ const props = withDefaults(defineProps<{
   moreLabel?: string
   embedded?: boolean
 }>(), {
-  moreLabel: 'همه نخبه‌ها',
+  moreLabel: 'همه افتخارآفرینان',
   embedded: false,
 })
 
@@ -115,12 +115,9 @@ function clip(text: string, max: number) {
   return `${(cut > 40 ? slice.slice(0, cut) : slice).trim()}…`
 }
 
-const roleLine = computed(() => {
-  const item = selected.value
-  return clip(`${item.grade} — ${item.achievement}`, 90)
-})
+const roleLine = computed(() => clip(selected.value.achievement, 90))
 
-const quoteLine = computed(() => clip(selected.value.bio, 120))
+const appreciationLine = 'از تلاش و دستاوردت قدردانی می‌کنیم و برایت موفقیت‌های بیشتر آرزو داریم.'
 
 function onKey(event: KeyboardEvent) {
   if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return

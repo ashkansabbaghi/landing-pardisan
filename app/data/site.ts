@@ -17,7 +17,7 @@ export const NAV_LINKS = [
   { to: '/about', label: 'درباره ما' },
   { to: '/middle', label: 'متوسطه اول' },
   { to: '/high', label: 'متوسطه دوم' },
-  { to: '/elite', label: 'نخبه‌ها' },
+  { to: '/elite', label: 'افتخارآفرینان' },
   { to: '/teachers', label: 'معلمان' },
   { to: '/staff', label: 'کادر' },
   { to: '/locations', label: 'شعبه‌ها' },
