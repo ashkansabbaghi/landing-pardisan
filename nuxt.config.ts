@@ -76,28 +76,28 @@ export default defineNuxtConfig({
   site: {
     url: siteOrigin,
     name: 'مدرسه پردیسان',
-    trailingSlash: false,
+    trailingSlash: true,
   },
   sitemap: {
     xsl: false,
     zeroRuntime: true,
     urls: [
       '/',
-      '/about',
-      '/middle',
-      '/high',
-      '/elite',
-      '/teachers',
-      '/staff',
-      '/locations',
-      '/register',
+      '/about/',
+      '/middle/',
+      '/high/',
+      '/elite/',
+      '/teachers/',
+      '/staff/',
+      '/locations/',
+      '/register/',
     ],
   },
   nitro: {
     compressPublicAssets: true,
     prerender: {
       crawlLinks: true,
-      routes: ['/', '/register'],
+      routes: ['/', '/register/'],
     },
     routeRules: {
       '/**': {
