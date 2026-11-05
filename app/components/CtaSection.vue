@@ -1,6 +1,6 @@
 <template>
   <section class="px-4 py-16 sm:px-6 lg:px-10">
-    <div class="mx-auto grid max-w-[1440px] overflow-hidden rounded-[2rem] bg-[#d8e0ea] lg:grid-cols-2">
+    <div class="mx-auto grid max-w-[1440px] overflow-hidden rounded-panel bg-[#d8e0ea] lg:grid-cols-2">
       <div class="flex flex-col justify-between p-8 sm:p-12 lg:p-16">
         <div>
           <p class="text-sm text-muted">{{ registerLink.label }}</p>
@@ -19,7 +19,7 @@
         </NuxtLink>
       </div>
       <div class="grid grid-cols-2 gap-3 p-4 sm:p-6">
-        <div class="overflow-hidden rounded-3xl">
+        <div class="overflow-hidden rounded-card">
           <CampusMedia
             aspect="aspect-[3/2]"
             :src="images.facade"
@@ -27,7 +27,7 @@
             sizes="(min-width: 1024px) 25vw, 50vw"
           />
         </div>
-        <div class="mt-8 overflow-hidden rounded-3xl">
+        <div class="mt-8 overflow-hidden rounded-card">
           <CampusMedia
             aspect="aspect-[3/2]"
             :src="images.library"
@@ -35,7 +35,7 @@
             sizes="(min-width: 1024px) 25vw, 50vw"
           />
         </div>
-        <div class="-mt-8 overflow-hidden rounded-3xl">
+        <div class="-mt-8 overflow-hidden rounded-card">
           <CampusMedia
             aspect="aspect-[3/2]"
             :src="images.stairs"
@@ -43,7 +43,7 @@
             sizes="(min-width: 1024px) 25vw, 50vw"
           />
         </div>
-        <div class="overflow-hidden rounded-3xl">
+        <div class="overflow-hidden rounded-card">
           <CampusMedia
             aspect="aspect-[3/2]"
             :src="images.windows"

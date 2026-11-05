@@ -1,5 +1,5 @@
 <template>
-  <section class="relative overflow-hidden rounded-b-[2rem] px-4 pb-16 pt-32 sm:px-10 sm:pb-20 sm:pt-36">
+  <section class="relative overflow-hidden rounded-b-panel px-4 pb-16 pt-32 sm:px-10 sm:pb-20 sm:pt-36">
     <CampusMedia
       fill
       soft-blur

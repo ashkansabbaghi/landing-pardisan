@@ -1,6 +1,6 @@
 <template>
   <div class="mx-auto max-w-xl">
-    <div class="rounded-[1.75rem] glass-strong p-6 sm:p-10">
+    <div class="rounded-card glass-strong p-6 sm:p-10">
       <p class="text-xs font-medium text-muted">ارتباط با مدرسه</p>
       <h2 class="mt-3 text-2xl font-semibold tracking-tight">شماره‌ها و افراد پذیرش</h2>
       <p class="mt-4 text-sm leading-7 text-muted">
@@ -61,7 +61,7 @@ const contactPerson = {
 <style scoped>
 .field {
   width: 100%;
-  border-radius: 0.9rem;
+  border-radius: var(--radius-item);
   border: 1px solid rgba(255, 255, 255, 0.45);
   background: rgba(255, 255, 255, 0.55);
   padding: 0.75rem 0.9rem;

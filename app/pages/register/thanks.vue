@@ -1,6 +1,6 @@
 <template>
   <section class="px-4 py-28 sm:px-6 lg:px-10">
-    <div class="mx-auto max-w-xl rounded-[1.75rem] glass-strong p-8 sm:p-10">
+    <div class="mx-auto max-w-xl rounded-card glass-strong p-8 sm:p-10">
       <p class="text-xs font-medium text-muted">پیش‌نمایش / تست</p>
       <h1 class="mt-3 text-2xl font-semibold tracking-tight">صفحهٔ تأیید پیش‌نمایش</h1>
       <p class="mt-4 text-sm leading-7 text-muted">

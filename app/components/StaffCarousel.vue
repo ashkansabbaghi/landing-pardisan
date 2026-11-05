@@ -37,7 +37,7 @@
           >
             <button
               type="button"
-              class="block w-full overflow-hidden rounded-[1.6rem] border border-white/25 bg-white/20 text-right shadow-xl backdrop-blur-xl"
+              class="block w-full overflow-hidden rounded-card border border-white/25 bg-white/20 text-right shadow-xl"
               :aria-pressed="index === selectedIndex"
               :aria-label="`${member.name}، ${member.role}`"
               @click="select(index)"

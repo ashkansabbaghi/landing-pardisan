@@ -1,6 +1,6 @@
 <template>
   <div class="mx-auto max-w-xl">
-    <form class="rounded-[1.75rem] glass-strong p-6 sm:p-10" novalidate @submit.prevent="onSubmit">
+    <form class="rounded-card glass-strong p-6 sm:p-10" novalidate @submit.prevent="onSubmit">
       <div class="sr-only" aria-hidden="true">
         <label for="website">وب‌سایت</label>
         <input
@@ -206,7 +206,7 @@ async function onSubmit() {
 <style scoped>
 .field {
   width: 100%;
-  border-radius: 0.9rem;
+  border-radius: var(--radius-item);
   border: 1px solid rgba(255, 255, 255, 0.45);
   background: rgba(255, 255, 255, 0.55);
   padding: 0.75rem 0.9rem;

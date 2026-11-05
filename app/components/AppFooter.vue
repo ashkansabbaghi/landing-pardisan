@@ -1,6 +1,6 @@
 <template>
   <footer class="relative mt-8 overflow-hidden px-4 pb-8 sm:px-6 lg:px-10">
-    <div class="mx-auto max-w-[1440px] overflow-hidden rounded-[2rem] bg-ink text-white">
+    <div class="mx-auto max-w-[1440px] overflow-hidden rounded-panel bg-ink text-white">
       <div class="grid gap-10 px-8 py-12 md:grid-cols-12 md:px-12 md:py-16">
         <div class="md:col-span-5">
           <p class="text-sm text-white/55">{{ site.city }}، {{ site.country }}</p>

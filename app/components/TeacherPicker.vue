@@ -26,7 +26,7 @@
             <button
               type="button"
               role="option"
-              class="flex w-full flex-col rounded-2xl px-4 py-3 text-right transition"
+              class="flex w-full flex-col rounded-item px-4 py-3 text-right transition"
               :class="index === selectedIndex
                 ? 'glass-nav text-ink'
                 : 'text-ink/55 hover:text-ink'"
@@ -41,7 +41,7 @@
         </ul>
 
         <article
-          class="relative overflow-hidden rounded-[1.75rem] lg:col-span-8"
+          class="relative overflow-hidden rounded-card lg:col-span-8"
           :class="panelTone"
         >
           <div class="pointer-events-none absolute inset-0 opacity-80" :class="panelGlow" aria-hidden="true" />

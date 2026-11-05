@@ -63,14 +63,14 @@
     <div
       v-if="open"
       id="mobile-nav"
-      class="pointer-events-auto mx-4 rounded-3xl glass-strong p-3 xl:hidden"
+      class="pointer-events-auto mx-4 rounded-card glass-strong p-3 xl:hidden"
     >
       <nav class="flex flex-col gap-1" aria-label="ناوبری موبایل">
         <NuxtLink
           v-for="link in [...navLinks, registerLink]"
           :key="link.to"
           :to="link.to"
-          class="rounded-2xl px-4 py-3 text-sm font-medium text-ink/80"
+          class="rounded-item px-4 py-3 text-sm font-medium text-ink/80"
           :class="isActive(link.to) ? 'bg-white/70 text-ink' : ''"
           @click="open = false"
         >

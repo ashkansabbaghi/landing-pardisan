@@ -11,7 +11,7 @@
         name="parents-faq"
         v-for="(item, index) in items"
         :key="item.question"
-        class="group rounded-2xl border border-ink/10 bg-white/55 px-5 py-4 backdrop-blur-xl open:bg-white/70"
+        class="group rounded-item border border-ink/10 bg-white/70 px-5 py-4 open:bg-white/85"
       >
         <summary class="cursor-pointer list-none text-right text-sm font-medium leading-7 text-ink sm:text-base [&::-webkit-details-marker]:hidden">
           <span class="flex items-start justify-between gap-3">

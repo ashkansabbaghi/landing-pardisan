@@ -26,7 +26,7 @@
             <button
               type="button"
               role="option"
-              class="flex w-full items-center justify-between rounded-2xl px-4 py-3 text-right text-lg font-medium transition sm:text-xl"
+              class="flex w-full items-center justify-between rounded-item px-4 py-3 text-right text-lg font-medium transition sm:text-xl"
               :class="index === selectedIndex
                 ? 'glass-nav text-ink'
                 : 'text-ink/55 hover:text-ink'"
@@ -41,14 +41,14 @@
         </ul>
 
         <article
-          class="relative overflow-hidden rounded-[1.75rem] border border-ink/8 lg:col-span-8"
+          class="relative overflow-hidden rounded-card border border-ink/8 lg:col-span-8"
           :class="panelTone"
         >
           <div class="pointer-events-none absolute inset-0" :class="panelGlow" aria-hidden="true" />
           <div class="relative flex min-h-[280px] flex-col justify-end p-6 sm:min-h-[320px] sm:p-8 lg:p-10">
             <h3 class="text-2xl font-semibold tracking-tight text-ink sm:text-3xl">{{ selected.name }}</h3>
             <p
-              class="mt-4 inline-flex max-w-full w-fit rounded-full border border-ink/10 bg-white/55 px-3.5 py-1.5 text-sm font-medium leading-6 text-ink/85 backdrop-blur-sm sm:text-base"
+              class="mt-4 inline-flex max-w-full w-fit rounded-full border border-ink/10 bg-white/55 px-3.5 py-1.5 text-sm font-medium leading-6 text-ink/85 sm:text-base"
             >
               {{ roleLine }}
             </p>

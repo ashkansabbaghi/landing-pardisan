@@ -20,7 +20,7 @@ withDefaults(defineProps<{
 }>(), {
   as: 'div',
   variant: 'default',
-  rounded: 'rounded-3xl',
+  rounded: 'rounded-card',
   padded: true,
 })
 </script>

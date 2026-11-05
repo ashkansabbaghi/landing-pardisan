@@ -1,5 +1,5 @@
 <template>
-  <article class="overflow-hidden rounded-[1.75rem] glass">
+  <article class="overflow-hidden rounded-card glass">
     <div class="relative h-64 sm:h-72">
       <CampusMedia
         fill
