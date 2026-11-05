@@ -3,40 +3,21 @@ import tailwindcss from '@tailwindcss/vite'
 
 const siteOrigin = 'https://www.pardisan-novin.ir'
 const isDev = process.env.NODE_ENV === 'development'
-const isProd = process.env.NODE_ENV === 'production'
-const siteUrl = siteOrigin
 const appBaseURL = process.env.NUXT_APP_BASE_URL || '/'
 
+// GitHub Pages cannot send custom response headers, so the policy ships as a
+// <meta> tag. frame-ancestors is not allowed in meta and is omitted.
 const contentSecurityPolicy = [
   "default-src 'self'",
-  isProd
-    ? "script-src 'self' 'unsafe-inline'"
-    : "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+  isDev ? "script-src 'self' 'unsafe-inline' 'unsafe-eval'" : "script-src 'self' 'unsafe-inline'",
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data:",
   "font-src 'self'",
-  isProd ? "connect-src 'self'" : "connect-src 'self' ws: wss:",
+  isDev ? "connect-src 'self' ws: wss:" : "connect-src 'self'",
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",
-  "frame-ancestors 'none'",
 ].join('; ')
-
-const securityHeaders: Record<string, string> = {
-  'X-Frame-Options': 'DENY',
-  'X-Content-Type-Options': 'nosniff',
-  'Referrer-Policy': 'strict-origin-when-cross-origin',
-  'Permissions-Policy': 'camera=(), microphone=(), geolocation=(), payment=()',
-  'Content-Security-Policy': contentSecurityPolicy,
-}
-
-if (isProd) {
-  securityHeaders['Strict-Transport-Security'] = 'max-age=31536000; includeSubDomains'
-}
-
-const htmlCache = 'public, max-age=0, must-revalidate'
-const mediaCache = 'public, max-age=300, must-revalidate'
-const immutableCache = 'public, max-age=31536000, immutable'
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
@@ -46,6 +27,34 @@ export default defineNuxtConfig({
   modules: ['@nuxtjs/sitemap'],
   vite: {
     plugins: [tailwindcss()],
+    $client: {
+      build: {
+        rolldownOptions: {
+          output: {
+            // The whole client (~100 KB gzipped) ships as one file: on this
+            // site every extra request costs a full CDN round trip.
+            advancedChunks: {
+              minShareCount: 1,
+              groups: [{ name: 'app', test: /./, minSize: 0 }],
+            },
+          },
+        },
+      },
+    },
+  },
+  experimental: {
+    // No useAsyncData anywhere: every page's payload would be an empty file
+    // fetched on top of the HTML.
+    payloadExtraction: false,
+    // Skips the builds/meta/*.json fetch on every visit.
+    appManifest: false,
+    defaults: {
+      nuxtLink: {
+        // Only prefetch route chunks on hover/focus, not for every link that
+        // scrolls into view.
+        prefetchOn: { visibility: false, interaction: true },
+      },
+    },
   },
   app: {
     baseURL: appBaseURL,
@@ -58,8 +67,16 @@ export default defineNuxtConfig({
       viewport: 'width=device-width, initial-scale=1',
       link: [
         { rel: 'icon', type: 'image/svg+xml', href: joinURL(appBaseURL, 'favicon.svg') },
+        {
+          rel: 'preload',
+          as: 'font',
+          type: 'font/woff2',
+          href: joinURL(appBaseURL, 'fonts/vazirmatn-arabic-wght-normal.woff2'),
+          crossorigin: 'anonymous',
+        },
       ],
       meta: [
+        { 'http-equiv': 'Content-Security-Policy', 'content': contentSecurityPolicy },
         { name: 'theme-color', content: '#eef2f6' },
         { name: 'format-detection', content: 'telephone=no' },
       ],
@@ -69,7 +86,7 @@ export default defineNuxtConfig({
     telegramBotToken: process.env.TELEGRAM_BOT_TOKEN || '',
     telegramChatId: process.env.TELEGRAM_CHAT_ID || '',
     public: {
-      siteUrl,
+      siteUrl: siteOrigin,
       googleSiteVerification: process.env.NUXT_PUBLIC_GOOGLE_SITE_VERIFICATION || '',
     },
   },
@@ -94,30 +111,15 @@ export default defineNuxtConfig({
     ],
   },
   nitro: {
-    compressPublicAssets: true,
+    // GitHub Pages compresses on the fly and ignores pre-built .gz/.br files.
+    compressPublicAssets: false,
     prerender: {
       crawlLinks: true,
       routes: ['/', '/register/'],
     },
     routeRules: {
-      '/**': {
-        headers: {
-          ...securityHeaders,
-          'Cache-Control': htmlCache,
-        },
-      },
       '/api/register': {
         prerender: false,
-      },
-      '/images/**': {
-        headers: {
-          'Cache-Control': mediaCache,
-        },
-      },
-      '/_nuxt/**': {
-        headers: {
-          'Cache-Control': immutableCache,
-        },
       },
     },
   },
