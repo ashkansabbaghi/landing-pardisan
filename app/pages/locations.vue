@@ -5,7 +5,7 @@
       eyebrow="کرج"
       lede="هر دو شعبه در گوهردشت. دو آدرس، یک استاندارد فضایی."
       :image="images.facade"
-      image-alt="نمای ساختمان شعبه دو پردیسان در گوهردشت کرج"
+      image-alt="نمای ساختمان شعبه دو پردیسان نوین در گوهردشت کرج"
     />
     <LocationsGrid embedded class="px-4 py-16 sm:px-6 lg:px-10" />
     <CtaSection
@@ -19,7 +19,7 @@ const { images } = useSchoolData()
 
 usePageSeo({
   title: 'شعبه‌ها و آدرس',
-  description: 'آدرس، تلفن و نقشه شعبه ۱ (متوسطه اول، گوهردشت) و شعبه ۲ (متوسطه دوم، گوهردشت) مدرسه پردیسان در کرج.',
+  description: 'آدرس، تلفن و نقشه شعبه ۱ (متوسطه اول، گوهردشت) و شعبه ۲ (متوسطه دوم، گوهردشت) مدرسه پردیسان نوین در کرج.',
   path: '/locations',
 })
 </script>

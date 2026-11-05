@@ -5,7 +5,7 @@
       eyebrow="صداهای مدرسه"
       lede="مدیریت، معاونان، مشاور و تیم اجرایی؛ کسانی که ریتم روزانه دو شعبه را نگه می‌دارند."
       :image="images.hall"
-      image-alt="فضای داخلی اداری و آموزشی پردیسان"
+      image-alt="فضای داخلی اداری و آموزشی پردیسان نوین"
     />
     <StaffCarousel embedded />
     <section class="px-4 pb-16 sm:px-6 lg:px-10">
@@ -27,7 +27,7 @@ const { images, staffMembers } = useSchoolData()
 
 usePageSeo({
   title: 'کادر مجرب',
-  description: 'آشنایی با مدیر، معاونان آموزشی، مشاور و کادر اجرایی مدرسه پردیسان در کرج.',
+  description: 'آشنایی با مدیر، معاونان آموزشی، مشاور و کادر اجرایی مدرسه پردیسان نوین در کرج.',
   path: '/staff',
 })
 </script>

@@ -92,7 +92,7 @@ export default defineNuxtConfig({
   },
   site: {
     url: siteOrigin,
-    name: 'مدرسه پردیسان',
+    name: 'مدرسه پردیسان نوین',
     trailingSlash: true,
   },
   sitemap: {

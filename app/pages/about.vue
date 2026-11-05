@@ -1,11 +1,11 @@
 <template>
   <div>
     <PageHero
-      title="درباره پردیسان"
+      title="درباره پردیسان نوین"
       eyebrow="فلسفه و تاریخچه"
       lede="مدرسه‌ای در کرج که فضا را جدی می‌گیرد؛ دو شعبه، یک زبان معماری."
       :image="images.night"
-      image-alt="نمای شب ساختمان آموزشی پردیسان با نورهای داخلی"
+      image-alt="نمای شب ساختمان آموزشی پردیسان نوین با نورهای داخلی"
     />
 
     <section class="px-4 py-16 sm:px-6 lg:px-10">
@@ -19,7 +19,7 @@
           <CampusMedia
             fill
             :src="images.courtyard"
-            alt="حیاط و نمای شعبه یک پردیسان"
+            alt="حیاط و نمای شعبه یک پردیسان نوین"
             sizes="(min-width: 1024px) 40vw, 100vw"
           />
         </GlassCard>
@@ -60,7 +60,7 @@ const { aboutContent, images } = useSchoolData()
 
 usePageSeo({
   title: 'درباره ما',
-  description: 'فلسفه، تاریخچه نمونه و ارزش‌های مدرسه پردیسان در کرج؛ معماری آموزشی آرام برای متوسطه اول و دوم.',
+  description: 'فلسفه، تاریخچه نمونه و ارزش‌های مدرسه پردیسان نوین در کرج؛ معماری آموزشی آرام برای متوسطه اول و دوم.',
   path: '/about',
 })
 </script>

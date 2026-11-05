@@ -6,7 +6,7 @@
       priority
       bg-class="bg-ink"
       :src="images.hero"
-      alt="نمای معماری ساختمان مدرسه پردیسان در غروب، با نورهای داخلی روشن"
+      alt="نمای معماری ساختمان مدرسه پردیسان نوین در غروب، با نورهای داخلی روشن"
       sizes="100vw"
     />
     <div class="hero-veil absolute inset-0" />

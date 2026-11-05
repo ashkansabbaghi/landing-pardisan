@@ -25,12 +25,12 @@ const status = computed(() => error.value?.statusCode ?? 500)
 const title = computed(() => status.value === 404 ? 'صفحه پیدا نشد' : 'خطایی رخ داد')
 const description = computed(() =>
   status.value === 404
-    ? 'این مسیر در سایت مدرسه پردیسان وجود ندارد.'
+    ? 'این مسیر در سایت مدرسه پردیسان نوین وجود ندارد.'
     : 'لطفاً کمی بعد دوباره تلاش کنید.',
 )
 
 useSeoMeta({
-  title: computed(() => `${title.value} | مدرسه پردیسان`),
+  title: computed(() => `${title.value} | مدرسه پردیسان نوین`),
   robots: 'noindex',
 })
 </script>

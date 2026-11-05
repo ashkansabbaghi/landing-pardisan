@@ -1,8 +1,9 @@
 export const SITE_URL = 'https://www.pardisan-novin.ir'
 
 export const SITE = {
-  name: 'مدرسه پردیسان',
-  shortName: 'پردیسان',
+  name: 'پردیسان نوین',
+  fullName: 'مدرسه پردیسان نوین',
+  shortName: 'پردیسان نوین',
   city: 'کرج',
   country: 'ایران',
   locale: 'fa_IR',

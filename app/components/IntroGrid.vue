@@ -16,7 +16,7 @@
             {{ homeCopy.introBody }}
           </p>
           <NuxtLink to="/about" class="mt-8 inline-flex text-sm font-medium text-ink underline decoration-ink/20 underline-offset-8">
-            درباره پردیسان
+            درباره پردیسان نوین
           </NuxtLink>
         </div>
       </GlassCard>
@@ -51,7 +51,7 @@
             <CampusMedia
               fill
               :src="images.library"
-              alt="سالن مطالعه با قفسه‌های کتاب و نور طبیعی در مدرسه پردیسان"
+              alt="سالن مطالعه با قفسه‌های کتاب و نور طبیعی در مدرسه پردیسان نوین"
               sizes="(min-width: 1024px) 30vw, (min-width: 768px) 50vw, 100vw"
             />
           </div>
@@ -63,7 +63,7 @@
           fill
           img-class="grayscale"
           :src="images.stairs"
-          alt="راهروی معماری با پله‌های سنگی و نورگیر در پردیسان"
+          alt="راهروی معماری با پله‌های سنگی و نورگیر در پردیسان نوین"
           sizes="(min-width: 1024px) 40vw, 100vw"
         />
         <div class="absolute inset-0 bg-slate-900/20" />

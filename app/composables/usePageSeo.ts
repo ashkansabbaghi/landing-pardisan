@@ -52,8 +52,8 @@ export function useSchoolJsonLd() {
   const schema = {
     '@context': 'https://schema.org',
     '@type': ['EducationalOrganization', 'School'],
-    name: SITE.name,
-    alternateName: SITE.shortName,
+    name: SITE.fullName,
+    alternateName: SITE.name,
     url: SITE_URL,
     logo: `${SITE_URL}/favicon.svg`,
     image: toAbsoluteUrl(SITE.defaultOgImage),
@@ -67,7 +67,7 @@ export function useSchoolJsonLd() {
     sameAs: [SITE.instagram],
     location: branches.map(branch => ({
       '@type': 'Place',
-      name: `${SITE.name} — ${branch.name}`,
+      name: `${SITE.fullName} — ${branch.name}`,
       telephone: branch.phoneHref.replace('tel:', ''),
       address: {
         '@type': 'PostalAddress',

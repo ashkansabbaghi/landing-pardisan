@@ -18,7 +18,7 @@
 
 <script setup lang="ts">
 useSeoMeta({
-  title: 'پیش‌نمایش تأیید | مدرسه پردیسان',
+  title: 'پیش‌نمایش تأیید | مدرسه پردیسان نوین',
   robots: 'noindex',
 })
 </script>

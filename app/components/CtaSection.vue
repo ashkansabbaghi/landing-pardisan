@@ -23,7 +23,7 @@
           <CampusMedia
             aspect="aspect-[3/2]"
             :src="images.facade"
-            alt="نمای ساختمان شعبه دو پردیسان"
+            alt="نمای ساختمان شعبه دو پردیسان نوین"
             sizes="(min-width: 1024px) 25vw, 50vw"
           />
         </div>
@@ -31,7 +31,7 @@
           <CampusMedia
             aspect="aspect-[3/2]"
             :src="images.library"
-            alt="سالن مطالعه پردیسان"
+            alt="سالن مطالعه پردیسان نوین"
             sizes="(min-width: 1024px) 25vw, 50vw"
           />
         </div>
@@ -39,7 +39,7 @@
           <CampusMedia
             aspect="aspect-[3/2]"
             :src="images.stairs"
-            alt="جزئیات معماری راهرو پردیسان"
+            alt="جزئیات معماری راهرو پردیسان نوین"
             sizes="(min-width: 1024px) 25vw, 50vw"
           />
         </div>

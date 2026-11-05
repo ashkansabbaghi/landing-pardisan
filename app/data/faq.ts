@@ -6,7 +6,7 @@ export interface FaqItem {
 /** Parents FAQ — provisional class-size/tuition answers until Kian confirms numbers. */
 export const parentsFaq: FaqItem[] = [
   {
-    question: 'پردیسان کجاست؟',
+    question: 'پردیسان نوین کجاست؟',
     answer:
       'دو شعبه در گوهردشت کرج: متوسطه اول — فاز ۳ بلوک ۲، خیابان پنجم غربی (شهید جوادی) · ۰۲۶-۳۴۴۱-۵۲۲۴؛ متوسطه دوم — فاز ۳ بلوک ۳، خیابان هفتم (شهید رنجبر) پلاک ۲۸ · ۰۲۶-۳۴۳۱-۱۳۵۵.',
   },
@@ -36,7 +36,7 @@ export const parentsFaq: FaqItem[] = [
       'بله؛ با هماهنگی تلفنی از طریق پروین رنجبر (۰۹۱۲۴۶۶۹۰۴۹).',
   },
   {
-    question: 'چرا پردیسان؟',
+    question: 'چرا پردیسان نوین؟',
     answer:
       'معماری آرام، تمرکز روی یادگیری، و کادر آموزشی جدی — بدون هیاهوی تزئینی.',
   },
