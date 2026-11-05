@@ -15,14 +15,6 @@
       <div class="relative">
         <RegisterContacts />
         <ParentsFaq />
-        <p class="mx-auto mt-6 max-w-xl text-center text-xs leading-6 text-muted">
-          <NuxtLink
-            to="/register/thanks"
-            class="underline decoration-ink/25 underline-offset-4 hover:text-ink"
-          >
-            پیش‌نمایش صفحهٔ تأیید (تست)
-          </NuxtLink>
-        </p>
       </div>
     </section>
   </div>

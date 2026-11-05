@@ -23,5 +23,6 @@ logs
 .env.*
 !.env.example
 
-# Telegram content-intake bot (sessions and submissions)
-scripts/.telegram-intake/
+# Local tool output
+.playwright-mcp
+.lighthouseci

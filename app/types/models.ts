@@ -1,13 +1,7 @@
 export interface EliteStudent {
   id: string
   name: string
-  grade: string
-  gpa: string
-  rank: string
   achievement: string
-  bio: string
-  photo: string
-  photoAlt: string
 }
 
 export interface StarTeacher {
@@ -17,8 +11,6 @@ export interface StarTeacher {
   years: number
   expertise: string
   bio: string
-  photo: string
-  photoAlt: string
   stats: { label: string; value: string }[]
 }
 
