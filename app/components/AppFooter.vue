@@ -13,7 +13,7 @@
         </div>
 
         <nav class="md:col-span-3" aria-label="پیوندهای پاورقی">
-          <p class="text-xs tracking-wide text-white/40">صفحات</p>
+          <p class="text-xs tracking-wide text-white/60">صفحات</p>
           <ul class="mt-4 space-y-2 text-sm">
             <li v-for="link in navLinks" :key="link.to">
               <NuxtLink :to="link.to" class="text-white/75 transition hover:text-white">
@@ -30,7 +30,7 @@
 
         <div class="md:col-span-4 space-y-6">
           <address v-for="branch in branches" :key="branch.id" class="not-italic">
-            <p class="text-xs text-white/40">{{ branch.shortName }}</p>
+            <p class="text-xs text-white/60">{{ branch.shortName }}</p>
             <p class="mt-1 text-sm leading-6 text-white/80">{{ branch.address }}، {{ branch.city }}</p>
             <a :href="branch.phoneHref" class="mt-1 inline-block text-sm text-white/70 hover:text-white" dir="ltr">
               {{ branch.phone }}
@@ -47,7 +47,7 @@
         </div>
       </div>
 
-      <div class="flex flex-col gap-2 border-t border-white/10 px-8 py-6 text-xs text-white/40 sm:flex-row sm:items-center sm:justify-between md:px-12">
+      <div class="flex flex-col gap-2 border-t border-white/10 px-8 py-6 text-xs text-white/60 sm:flex-row sm:items-center sm:justify-between md:px-12">
         <p>© {{ toPersianDigits(site.foundingYear) }}–۱۴۰۵ {{ site.name }}. تمامی حقوق محفوظ است.</p>
         <p>{{ site.email }}</p>
       </div>

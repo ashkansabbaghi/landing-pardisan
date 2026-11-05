@@ -21,24 +21,24 @@
       </div>
 
       <div class="grid items-start gap-8 lg:grid-cols-12">
-        <ul class="flex flex-col gap-1 lg:col-span-4" role="listbox" :aria-label="heading" @keydown="onKey">
-          <li v-for="(item, index) in items" :key="item.id">
-            <button
-              type="button"
-              role="option"
-              class="flex w-full flex-col rounded-item px-4 py-3 text-right transition"
-              :class="index === selectedIndex
-                ? 'glass-nav text-ink'
-                : 'text-ink/55 hover:text-ink'"
-              :aria-selected="index === selectedIndex"
-              :tabindex="index === selectedIndex ? 0 : -1"
-              @click="selectedIndex = index"
-            >
-              <span class="text-lg font-medium sm:text-xl">{{ item.name }}</span>
-              <span class="mt-1 text-xs text-muted">{{ item.subject }}</span>
-            </button>
-          </li>
-        </ul>
+        <div class="flex flex-col gap-1 lg:col-span-4" role="listbox" :aria-label="heading" @keydown="onKey">
+          <button
+            v-for="(item, index) in items"
+            :key="item.id"
+            type="button"
+            role="option"
+            class="flex w-full flex-col rounded-item px-4 py-3 text-right transition"
+            :class="index === selectedIndex
+              ? 'glass-nav text-ink'
+              : 'text-ink/55 hover:text-ink'"
+            :aria-selected="index === selectedIndex"
+            :tabindex="index === selectedIndex ? 0 : -1"
+            @click="selectedIndex = index"
+          >
+            <span class="text-lg font-medium sm:text-xl">{{ item.name }}</span>
+            <span class="mt-1 text-xs text-muted">{{ item.subject }}</span>
+          </button>
+        </div>
 
         <article
           class="relative overflow-hidden rounded-card lg:col-span-8"

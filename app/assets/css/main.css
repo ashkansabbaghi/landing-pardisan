@@ -29,7 +29,7 @@
   --color-mist: #eef2f6;
   --color-fog: #d7e0ea;
   --color-ink: #0f172a;
-  --color-muted: #5c6778;
+  --color-muted: #536070; /* 4.8:1 on the CTA panel, 7:1 on white */
   --color-steel: #7a8798;
 }
 

@@ -21,24 +21,24 @@
       </div>
 
       <div class="grid items-start gap-8 lg:grid-cols-12">
-        <ul class="flex flex-col gap-1 lg:col-span-4" role="listbox" :aria-label="heading" @keydown="onKey">
-          <li v-for="(item, index) in items" :key="item.id">
-            <button
-              type="button"
-              role="option"
-              class="flex w-full items-center justify-between rounded-item px-4 py-3 text-right text-lg font-medium transition sm:text-xl"
-              :class="index === selectedIndex
-                ? 'glass-nav text-ink'
-                : 'text-ink/55 hover:text-ink'"
-              :aria-selected="index === selectedIndex"
-              :tabindex="index === selectedIndex ? 0 : -1"
-              @click="selectedIndex = index"
-            >
-              <span>{{ item.name }}</span>
-              <span v-if="index === selectedIndex" class="size-1.5 rounded-full bg-ink" aria-hidden="true" />
-            </button>
-          </li>
-        </ul>
+        <div class="flex flex-col gap-1 lg:col-span-4" role="listbox" :aria-label="heading" @keydown="onKey">
+          <button
+            v-for="(item, index) in items"
+            :key="item.id"
+            type="button"
+            role="option"
+            class="flex w-full items-center justify-between rounded-item px-4 py-3 text-right text-lg font-medium transition sm:text-xl"
+            :class="index === selectedIndex
+              ? 'glass-nav text-ink'
+              : 'text-ink/55 hover:text-ink'"
+            :aria-selected="index === selectedIndex"
+            :tabindex="index === selectedIndex ? 0 : -1"
+            @click="selectedIndex = index"
+          >
+            <span>{{ item.name }}</span>
+            <span v-if="index === selectedIndex" class="size-1.5 rounded-full bg-ink" aria-hidden="true" />
+          </button>
+        </div>
 
         <article
           class="relative overflow-hidden rounded-card border border-ink/8 lg:col-span-8"
@@ -49,7 +49,7 @@
             <h3 class="text-2xl font-semibold tracking-tight text-ink sm:text-3xl">{{ selected.name }}</h3>
             <p
               class="mt-4 inline-flex max-w-full w-fit rounded-full border border-ink/10 bg-white/55 px-3.5 py-1.5 text-sm font-medium leading-6 text-ink/85 sm:text-base"
-            >
+          >
               {{ roleLine }}
             </p>
             <p class="mt-4 max-w-2xl text-sm leading-7 text-ink/60 sm:text-[0.95rem]">{{ appreciationLine }}</p>
