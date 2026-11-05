@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+  pull_request:
   workflow_dispatch:
 
 permissions:
@@ -37,12 +38,23 @@ jobs:
           NUXT_APP_BASE_URL: /
           NITRO_PRESET: github_pages
 
+      # Performance budget. Assertions are warnings for now: they show up in
+      # the job log and the uploaded report without blocking a deploy.
+      - name: Lighthouse
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          configPath: ./lighthouserc.json
+          uploadArtifacts: true
+          temporaryPublicStorage: false
+
       - name: Upload Pages artifact
+        if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v3
         with:
           path: .output/public
 
   deploy:
+    if: github.event_name != 'pull_request'
     needs: build
     runs-on: ubuntu-latest
     environment:
@@ -52,3 +64,32 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      # ArvanCloud keeps serving the previous build until its edge cache is
+      # purged. Needs the ARVAN_API_KEY repository secret (CDN purge access);
+      # the step is skipped when the secret is missing.
+      - name: Purge ArvanCloud cache
+        env:
+          ARVAN_API_KEY: ${{ secrets.ARVAN_API_KEY }}
+          ARVAN_DOMAIN: pardisan-novin.ir
+        run: |
+          if [ -z "$ARVAN_API_KEY" ]; then
+            echo "ARVAN_API_KEY not set; skipping purge."
+            exit 0
+          fi
+          # Give the Pages origin a moment to serve the new build everywhere.
+          sleep 30
+          curl --fail --silent --show-error \
+            --request POST \
+            --header "Authorization: Apikey $ARVAN_API_KEY" \
+            --header "Content-Type: application/json" \
+            --data '{"purge":"all"}' \
+            "https://napi.arvancloud.ir/cdn/4.0/domains/$ARVAN_DOMAIN/caching/purge"
+          echo
+          echo "Purged $ARVAN_DOMAIN."
+
+      - name: Smoke test
+        run: |
+          curl --fail --silent --show-error --output /dev/null \
+            --write-out 'home: %{http_code} in %{time_total}s\n' \
+            https://www.pardisan-novin.ir/

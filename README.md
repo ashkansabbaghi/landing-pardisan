@@ -1,6 +1,6 @@
-# مدرسه پردیسان نوین
+# پردیسان نوین
 
-وب‌سایت چندصفحه‌ای مدرسه پردیسان نوین (کرج) — فارسی، راست‌به‌چپ، با ظاهر شیشه‌ای معماری.
+وب‌سایت چندصفحه‌ای مدرسه پردیسان نوین (کرج) — فارسی، راست‌به‌چپ، ایستا (Nuxt 4 + Tailwind 4).
 
 ## اجرا
 
@@ -11,33 +11,67 @@ npm run dev
 
 سرور توسعه روی `http://localhost:3000` بالا می‌آید.
 
-ساخت ایستا (برای GitHub Pages):
+ساخت ایستا (همان چیزی که دیپلوی می‌شود):
 
 ```bash
 npm run generate
 ```
 
-خروجی در `.output/public` است. ساخت SSR:
+خروجی در `.output/public` است. برای دیدن خروجی نهایی: `npx serve .output/public`.
+
+## تصاویر
+
+تصاویر اصلی در `app/assets/images/` هستند و هیچ‌وقت مستقیم سرو نمی‌شوند.
+اسکریپت زیر برای هر تصویر نسخه‌های AVIF، WebP و JPEG در چند عرض می‌سازد و
+`app/data/image-manifest.json` را به‌روز می‌کند:
 
 ```bash
-npm run build
-npm run preview
+node scripts/build-images.mjs
 ```
 
-## GitHub Pages
+خروجی (`public/images/`) و manifest کامیت می‌شوند؛ CI این اسکریپت را اجرا نمی‌کند.
 
-سایت به‌صورت ایستا با GitHub Actions روی Pages منتشر می‌شود.
+- تصویر جدید: فایل JPEG را در `app/assets/images/<گروه>/` بگذارید، اسکریپت را اجرا کنید و
+  کلید آن (مثلاً `campus/hero`) را در `app/data/site.ts` یا داده‌ها استفاده کنید.
+- کامپوننت `CampusMedia` با همین کلید `<picture>` کامل (srcset + width/height) می‌سازد.
+  برای تصویر بالای صفحه `priority` بدهید تا eager و preload شود.
 
-مبدأ پیکربندی‌شده (canonical، sitemap، `robots.txt`): [https://www.pardisan-novin.ir](https://www.pardisan-novin.ir) — همان `site.url` در `nuxt.config.ts` و `SITE_URL` در `app/data/site.ts`، با `NUXT_APP_BASE_URL=/` در `.github/workflows/deploy-pages.yml`.
+## دیپلوی
 
-یک‌بار در مخزن این را فعال کنید:
+سایت با GitHub Actions ساخته و روی GitHub Pages منتشر می‌شود؛ ArvanCloud جلوی آن است.
+گردش‌کار: `.github/workflows/deploy-pages.yml`
 
-1. **Settings → Pages**
-2. **Source:** GitHub Actions
+- push به `main` → بیلد → Lighthouse (هشدار، مسدودکننده نیست) → انتشار → پاک‌کردن کش آروان → تست سلامت.
+- Pull request فقط بیلد و Lighthouse می‌گیرد.
 
-پس از push به `main`، گردش‌کار `.github/workflows/deploy-pages.yml` سایت را می‌سازد و منتشر می‌کند. ساخت ایستا به کلیدهای تلگرام نیاز ندارد.
+### تنظیمات یک‌بارهٔ مخزن
 
-اگر مبدأ عوض شد، `site.url` / `SITE_URL`، `robots.txt` و `NUXT_APP_BASE_URL` را با هم عوض کنید.
+1. **Settings → Pages → Source:** GitHub Actions
+2. **Settings → Secrets → Actions:** `ARVAN_API_KEY` = کلید API آروان با دسترسی CDN (برای purge).
+   بدون این secret، مرحلهٔ purge رد می‌شود و تا انقضای کش، نسخهٔ قبلی دیده می‌شود.
+
+### تنظیمات کش در پنل ArvanCloud (یک‌بار)
+
+GitHub Pages برای همهٔ فایل‌ها فقط `max-age=600` می‌فرستد و هدر سفارشی نمی‌پذیرد؛ کش واقعی باید
+در آروان تنظیم شود (CDN → کشینگ / قوانین صفحه). هدف:
+
+| مسیر | کش لبه (Edge TTL) | کش مرورگر |
+| --- | --- | --- |
+| `/_nuxt/*` | ۱ سال | ۱ سال |
+| `/images/*` | ۱ سال | ۱ سال |
+| `/fonts/*` | ۱ سال | ۱ سال |
+| بقیه (HTML, sitemap, robots) | ۱۰ دقیقه | ۰ (revalidate) |
+
+- نام فایل‌های `/_nuxt` و `/images` هش‌دار یا نسخه‌دار است؛ TTL بلند بی‌خطر است.
+- حالت کش را روی «کش کردن محتوای ایستا بدون توجه به هدر مبدأ» بگذارید، نه «فقط طبق هدر مبدأ».
+- فشرده‌سازی (Gzip/Brotli) و HTTP/3 را روشن کنید.
+- بعد از هر دیپلوی، purge خودکار انجام می‌شود؛ اگر دستی لازم شد: CDN → کشینگ → پاک‌کردن کش.
+
+بررسی سریع بعد از تنظیم (باید `x-cache: HIT` و `cache-control` بلند برگردد):
+
+```bash
+curl -sI https://www.pardisan-novin.ir/fonts/vazirmatn-arabic-wght-normal.woff2 | grep -iE 'x-cache|cache-control'
+```
 
 ## صفحات
 
@@ -47,10 +81,11 @@ npm run preview
 | `/about` | درباره ما |
 | `/middle` | متوسطه اول — شعبه ۱ |
 | `/high` | متوسطه دوم — شعبه ۲ |
-| `/elite` | نخبه‌ها |
+| `/elite` | افتخارآفرینان |
 | `/teachers` | معلمان ستاره‌دار |
 | `/staff` | کادر مجرب |
 | `/locations` | شعبه‌ها و آدرس |
-| `/register` | شماره‌های تماس و افراد پذیرش |
+| `/register` | شماره‌های تماس ثبت‌نام و پرسش‌های اولیا |
 
-محتوای نمونه (نام‌ها، آدرس‌ها، تلفن‌ها) ساختگی است.
+اگر دامنه عوض شد، `siteOrigin` در `nuxt.config.ts`، `SITE_URL` در `app/data/site.ts`،
+`public/robots.txt` و `ARVAN_DOMAIN` در گردش‌کار را با هم عوض کنید.
