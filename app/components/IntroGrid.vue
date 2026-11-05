@@ -52,10 +52,7 @@
               fill
               :src="images.library"
               alt="سالن مطالعه با قفسه‌های کتاب و نور طبیعی در مدرسه پردیسان"
-              width="1400"
-              height="933"
-              :quality="60"
-              sizes="xs:100vw sm:100vw md:50vw lg:35vw xl:640px"
+              sizes="(min-width: 1024px) 30vw, (min-width: 768px) 50vw, 100vw"
             />
           </div>
         </div>
@@ -64,13 +61,10 @@
       <GlassCard :padded="false" class="relative min-h-[240px] overflow-hidden lg:col-span-5">
         <CampusMedia
           fill
-          picture-class="[&_img]:grayscale"
+          img-class="grayscale"
           :src="images.stairs"
           alt="راهروی معماری با پله‌های سنگی و نورگیر در پردیسان"
-          width="1400"
-          height="933"
-          :quality="60"
-          sizes="xs:100vw sm:100vw md:50vw lg:30vw xl:480px"
+          sizes="(min-width: 1024px) 40vw, 100vw"
         />
         <div class="absolute inset-0 bg-slate-900/20" />
         <p class="absolute bottom-6 right-6 text-sm font-medium text-white">معماری روزانه</p>

@@ -3,17 +3,11 @@
     <CampusMedia
       fill
       soft-blur
-      :shimmer="false"
-      :fade="false"
+      priority
       bg-class="bg-ink"
       :src="image"
       :alt="imageAlt"
-      width="1600"
-      height="1067"
-      :defer="false"
-      loading="eager"
-      :preload="{ fetchPriority: 'high' }"
-      :img-attrs="{ fetchpriority: 'high' }"
+      sizes="100vw"
     />
     <div class="hero-veil absolute inset-0" />
     <div class="relative z-10 mx-auto max-w-[1440px]">

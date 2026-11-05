@@ -1,0 +1,174 @@
+{
+  "campus/classroom": {
+    "width": 1400,
+    "height": 871,
+    "widths": [
+      320,
+      480,
+      768,
+      1080,
+      1400
+    ]
+  },
+  "campus/courtyard": {
+    "width": 1600,
+    "height": 1048,
+    "widths": [
+      320,
+      480,
+      768,
+      1080,
+      1440,
+      1600
+    ]
+  },
+  "campus/facade": {
+    "width": 1600,
+    "height": 1067,
+    "widths": [
+      320,
+      480,
+      768,
+      1080,
+      1440,
+      1600
+    ]
+  },
+  "campus/hall": {
+    "width": 1400,
+    "height": 935,
+    "widths": [
+      320,
+      480,
+      768,
+      1080,
+      1400
+    ]
+  },
+  "campus/hero": {
+    "width": 1920,
+    "height": 1280,
+    "widths": [
+      320,
+      480,
+      768,
+      1080,
+      1440,
+      1920
+    ]
+  },
+  "campus/library": {
+    "width": 1400,
+    "height": 933,
+    "widths": [
+      320,
+      480,
+      768,
+      1080,
+      1400
+    ]
+  },
+  "campus/night": {
+    "width": 1600,
+    "height": 1067,
+    "widths": [
+      320,
+      480,
+      768,
+      1080,
+      1440,
+      1600
+    ]
+  },
+  "campus/skyline": {
+    "width": 1600,
+    "height": 1067,
+    "widths": [
+      320,
+      480,
+      768,
+      1080,
+      1440,
+      1600
+    ]
+  },
+  "campus/stairs": {
+    "width": 1400,
+    "height": 933,
+    "widths": [
+      320,
+      480,
+      768,
+      1080,
+      1400
+    ]
+  },
+  "campus/windows": {
+    "width": 1400,
+    "height": 1336,
+    "widths": [
+      320,
+      480,
+      768,
+      1080,
+      1400
+    ]
+  },
+  "staff/amir": {
+    "width": 800,
+    "height": 533,
+    "widths": [
+      320,
+      480,
+      768,
+      800
+    ]
+  },
+  "staff/farhad": {
+    "width": 600,
+    "height": 900,
+    "widths": [
+      320,
+      480,
+      600
+    ]
+  },
+  "staff/leila": {
+    "width": 601,
+    "height": 900,
+    "widths": [
+      320,
+      480,
+      601
+    ]
+  },
+  "staff/saeed": {
+    "width": 600,
+    "height": 900,
+    "widths": [
+      320,
+      480,
+      600
+    ]
+  },
+  "staff/shima": {
+    "width": 800,
+    "height": 534,
+    "widths": [
+      320,
+      480,
+      768,
+      800
+    ]
+  },
+  "staff/zahra": {
+    "width": 800,
+    "height": 533,
+    "widths": [
+      320,
+      480,
+      768,
+      800
+    ]
+  }
+}

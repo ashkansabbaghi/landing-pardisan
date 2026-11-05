@@ -20,9 +20,7 @@
             fill
             :src="images.courtyard"
             alt="حیاط و نمای شعبه یک پردیسان"
-            width="1600"
-            height="1048"
-            sizes="xs:100vw sm:100vw md:100vw lg:40vw xl:40vw xxl:40vw"
+            sizes="(min-width: 1024px) 40vw, 100vw"
           />
         </GlassCard>
       </div>

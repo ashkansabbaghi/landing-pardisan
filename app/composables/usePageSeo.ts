@@ -11,6 +11,7 @@ interface PageSeoOptions {
   title: string
   description: string
   path: string
+  /** Manifest key (e.g. `campus/facade`); defaults to the site share image. */
   image?: string
   imageAlt?: string
 }
@@ -19,7 +20,7 @@ export function usePageSeo(options: PageSeoOptions) {
   const url = options.path === '/' ? SITE_URL : `${SITE_URL}${options.path}`
   const isHome = options.path === '/'
   const fullTitle = isHome ? options.title : `${options.title} | ${SITE.name}`
-  const image = toAbsoluteUrl(options.image ?? SITE.defaultOgImage)
+  const image = toAbsoluteUrl(options.image ? imageUrl(options.image, 1440, 'jpg') : SITE.defaultOgImage)
   const imageAlt = options.imageAlt ?? SITE.name
 
   useSeoMeta({

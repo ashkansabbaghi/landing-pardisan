@@ -3,17 +3,11 @@
     <CampusMedia
       fill
       soft-blur
-      :shimmer="false"
-      :fade="false"
+      priority
       bg-class="bg-ink"
       :src="images.hero"
       alt="نمای معماری ساختمان مدرسه پردیسان در غروب، با نورهای داخلی روشن"
-      width="1920"
-      height="1280"
-      :defer="false"
-      loading="eager"
-      :preload="{ fetchPriority: 'high' }"
-      :img-attrs="{ fetchpriority: 'high' }"
+      sizes="100vw"
     />
     <div class="hero-veil absolute inset-0" />
 

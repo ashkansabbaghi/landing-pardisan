@@ -48,9 +48,7 @@
                   aspect="aspect-[3/4]"
                   :src="member.photo"
                   :alt="member.photoAlt"
-                  width="800"
-                  height="1200"
-                  sizes="sm:210px md:250px"
+                  sizes="(min-width: 640px) 250px, 210px"
                 />
                 <span class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-900/70 to-transparent p-4">
                   <span class="block text-sm font-semibold text-white">{{ member.name }}</span>
