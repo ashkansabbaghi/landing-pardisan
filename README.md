@@ -36,6 +36,14 @@ node scripts/build-images.mjs
 - کامپوننت `CampusMedia` با همین کلید `<picture>` کامل (srcset + width/height) می‌سازد.
   برای تصویر بالای صفحه `priority` بدهید تا eager و preload شود.
 
+### لوگو
+
+- `public/logo.svg` نسخهٔ کامل (حلقه، نقطه‌ها و واژه‌نشان PARDISAN) برای چاپ، شبکه‌های اجتماعی و داده‌های ساخت‌یافته.
+- `public/logo-mark.svg` نشانهٔ بدون متن با حلقهٔ ضخیم‌تر، برای هدر و اندازه‌های کوچک.
+- `public/favicon.svg` و `favicon.ico` همان نشانه روی مربع کرم؛ `public/logo.png` خروجی ۵۱۲ پیکسلی `logo.svg`.
+
+هر سه SVG از روی کارت ویزیت مدرسه ترسیم شده‌اند و متن PARDISAN به مسیر تبدیل شده، پس به هیچ فونتی وابسته نیستند.
+
 ## دیپلوی
 
 سایت با GitHub Actions ساخته و روی GitHub Pages منتشر می‌شود؛ ArvanCloud جلوی آن است.
