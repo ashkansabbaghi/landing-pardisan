@@ -66,7 +66,7 @@ export default defineNuxtConfig({
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
       link: [
-        { rel: 'icon', type: 'image/svg+xml', href: joinURL(appBaseURL, 'favicon.svg') },
+        { rel: 'icon', type: 'image/svg+xml', href: `${joinURL(appBaseURL, 'favicon.svg')}?v=2` },
         {
           rel: 'preload',
           as: 'font',
