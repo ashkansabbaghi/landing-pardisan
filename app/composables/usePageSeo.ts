@@ -7,6 +7,14 @@ function toAbsoluteUrl(path: string) {
   return `${SITE_URL}${path}`
 }
 
+/** The host 301-redirects `/x` to `/x/`, so canonical URLs must carry the slash. */
+function pageUrl(path: string) {
+  if (path === '/' || path === '') {
+    return `${SITE_URL}/`
+  }
+  return path.endsWith('/') ? `${SITE_URL}${path}` : `${SITE_URL}${path}/`
+}
+
 interface PageSeoOptions {
   title: string
   description: string
@@ -17,7 +25,7 @@ interface PageSeoOptions {
 }
 
 export function usePageSeo(options: PageSeoOptions) {
-  const url = options.path === '/' ? SITE_URL : `${SITE_URL}${options.path}`
+  const url = pageUrl(options.path)
   const isHome = options.path === '/'
   const fullTitle = isHome ? options.title : `${options.title} | ${SITE.name}`
   const image = toAbsoluteUrl(options.image ? imageUrl(options.image, 1440, 'jpg') : SITE.defaultOgImage)
@@ -46,22 +54,30 @@ export function usePageSeo(options: PageSeoOptions) {
   })
 }
 
+const SCHOOL_ID = `${SITE_URL}/#school`
+const WEBSITE_ID = `${SITE_URL}/#website`
+const SCHOOL_DAYS = ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday']
+
 export function useSchoolJsonLd() {
   const { branches } = useSchoolData()
+  const phones = branches.map(branch => branch.phoneHref.replace('tel:', ''))
 
-  const schema = {
-    '@context': 'https://schema.org',
+  const school = {
     '@type': ['EducationalOrganization', 'School'],
+    '@id': SCHOOL_ID,
     name: SITE.fullName,
-    alternateName: SITE.name,
-    url: SITE_URL,
-    logo: `${SITE_URL}/favicon.svg`,
+    alternateName: [SITE.name, ...SITE.alternateNames],
+    url: `${SITE_URL}/`,
+    logo: `${SITE_URL}${SITE.logo}`,
     image: toAbsoluteUrl(SITE.defaultOgImage),
     email: SITE.email,
-    foundingDate: String(SITE.foundingYear),
+    telephone: phones,
+    foundingDate: String(SITE.foundingYearGregorian),
+    areaServed: SITE.city,
     address: {
       '@type': 'PostalAddress',
       addressLocality: SITE.city,
+      addressRegion: SITE.region,
       addressCountry: 'IR',
     },
     sameAs: [SITE.instagram],
@@ -69,22 +85,46 @@ export function useSchoolJsonLd() {
       '@type': 'Place',
       name: `${SITE.fullName} — ${branch.name}`,
       telephone: branch.phoneHref.replace('tel:', ''),
+      hasMap: branch.mapUrl,
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: branch.geo.latitude,
+        longitude: branch.geo.longitude,
+      },
+      openingHoursSpecification: {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: SCHOOL_DAYS,
+        opens: branch.openingHours.opens,
+        closes: branch.openingHours.closes,
+      },
       address: {
         '@type': 'PostalAddress',
         streetAddress: branch.address,
         addressLocality: SITE.city,
-        addressRegion: 'البرز',
+        addressRegion: SITE.region,
         ...(branch.postalCode ? { postalCode: branch.postalCode } : {}),
         addressCountry: 'IR',
       },
     })),
   }
 
+  // Lets Google show «پردیسان نوین» as the site name in results.
+  const website = {
+    '@type': 'WebSite',
+    '@id': WEBSITE_ID,
+    name: SITE.name,
+    alternateName: [SITE.fullName, ...SITE.alternateNames],
+    url: `${SITE_URL}/`,
+    inLanguage: 'fa',
+    publisher: { '@id': SCHOOL_ID },
+  }
+
   useHead({
     script: [
       {
         type: 'application/ld+json',
-        children: JSON.stringify(schema),
+        children: JSON.stringify({ '@context': 'https://schema.org', '@graph': [website, school] }),
+        key: 'school-jsonld',
       },
     ],
   })

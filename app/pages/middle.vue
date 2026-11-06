@@ -8,8 +8,8 @@ import { getBranch } from '~/data/locations'
 const branch = getBranch('middle')
 
 usePageSeo({
-  title: 'متوسطه اول — شعبه ۱',
-  description: 'شعبه ۱ مدرسه پردیسان نوین در گوهردشت کرج؛ متوسطه اول (راهنمایی)، پایه‌های هفتم تا نهم، کلاس‌های کم‌جمعیت.',
+  title: 'متوسطه اول (دوره اول) — شعبه ۱',
+  description: 'شعبه ۱ مدرسه پردیسان نوین (دبیرستان پردیسان) در گوهردشت (رجایی‌شهر) کرج؛ متوسطه اول، دوره اول، پایه‌های هفتم تا نهم، کلاس‌های کم‌جمعیت.',
   path: '/middle',
   image: branch.image,
   imageAlt: branch.imageAlt,

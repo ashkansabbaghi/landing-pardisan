@@ -4,13 +4,19 @@ export const SITE = {
   name: 'پردیسان نوین',
   fullName: 'مدرسه پردیسان نوین',
   shortName: 'پردیسان نوین',
+  /** Names parents actually search for (Search Console, 2026-11). */
+  alternateNames: ['پردیسان', 'دبیرستان پردیسان', 'دبیرستان پردیسان کرج', 'مدرسه پردیسان کرج'],
   city: 'کرج',
+  region: 'البرز',
   country: 'ایران',
   locale: 'fa_IR',
   email: 'pardisannovin1395@gmail.com',
   instagram: 'https://www.instagram.com/pardisan.highschool',
   defaultOgImage: '/images/og/home.jpg',
+  /** Raster logo for structured data (Google wants PNG/JPG, 112px or larger). */
+  logo: '/logo.png',
   foundingYear: 1392,
+  foundingYearGregorian: 2013,
 } as const
 
 export const NAV_LINKS = [

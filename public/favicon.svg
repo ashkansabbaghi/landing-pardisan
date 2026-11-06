@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="E/13G ~1/�3'F">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="مدرسه پردیسان نوین">
   <rect width="64" height="64" rx="20" fill="#0f172a"/>
   <circle cx="32" cy="32" r="18" fill="none" stroke="#eef2f6" stroke-width="1.2"/>
   <circle cx="32" cy="32" r="14" fill="none" stroke="#eef2f6" stroke-width="0.6" opacity="0.5"/>
-  <text x="32" y="39" text-anchor="middle" font-family="Vazirmatn, Tahoma, sans-serif" font-size="22" font-weight="600" fill="#eef2f6">~</text>
+  <text x="32" y="39" text-anchor="middle" font-family="Vazirmatn, 'Noto Sans Arabic', 'DejaVu Sans', Tahoma, sans-serif" font-size="22" font-weight="600" fill="#eef2f6">پ</text>
 </svg>

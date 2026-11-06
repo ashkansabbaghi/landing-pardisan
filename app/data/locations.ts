@@ -15,11 +15,13 @@ export const branches: Branch[] = [
     phone: '۰۲۶-۳۴۴۱-۵۲۲۴',
     phoneHref: 'tel:+982634415224',
     mapUrl: 'https://maps.app.goo.gl/uqvUd2Y1bhYeo1TK7',
+    geo: { latitude: 35.8569013, longitude: 50.9675094 },
     image: IMAGES.courtyard,
     imageAlt: 'نمای محوطه و ساختمان شعبه یک مدرسه پردیسان نوین در گوهردشت کرج',
     description:
       'شعبهٔ یک پردیسان نوین برای سال‌های کشف طراحی شده است: کلاس‌های کم‌جمعیت، نورگیرهای بلند، و حیاطی آرام برای توقف میان درس‌ها. اینجا متوسطهٔ اول یعنی ساخت عادت فکر کردن.',
     hours: 'شنبه تا چهارشنبه، ۷:۳۰ تا ۱۴:۳۰',
+    openingHours: { opens: '07:30', closes: '14:30' },
     highlights: [
       {
         title: 'کلاس‌های کم‌جمعیت',
@@ -48,11 +50,13 @@ export const branches: Branch[] = [
     phone: '۰۲۶-۳۴۳۱-۱۳۵۵',
     phoneHref: 'tel:+982634311355',
     mapUrl: 'https://maps.app.goo.gl/9tK4WWM6HvtQVB7F7',
+    geo: { latitude: 35.8601813, longitude: 50.9650363 },
     image: IMAGES.facade,
     imageAlt: 'نمای ساختمان مدرن شعبه دو مدرسه پردیسان نوین در گوهردشت کرج',
     description:
       'شعبهٔ دو برای سال‌های تمرکز و انتخاب است. آزمایشگاه، سالن مطالعه، و حلقه‌های درسی با ریتمی جدی‌تر از شعبهٔ یک پیش می‌روند — بدون شلوغی بصری و با احترام به سکوت کار.',
     hours: 'شنبه تا چهارشنبه، ۷:۱۵ تا ۱۵:۰۰',
+    openingHours: { opens: '07:15', closes: '15:00' },
     highlights: [
       {
         title: 'مسیر کنکور و المپیاد',

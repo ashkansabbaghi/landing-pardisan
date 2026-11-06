@@ -38,10 +38,13 @@ export interface Branch {
   phone: string
   phoneHref: string
   mapUrl: string
+  geo: { latitude: number; longitude: number }
   image: string
   imageAlt: string
   description: string
   hours: string
+  /** 24h times for structured data; `hours` is the display string. */
+  openingHours: { opens: string; closes: string }
   highlights: { title: string; text: string }[]
 }
 
