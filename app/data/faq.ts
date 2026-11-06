@@ -3,7 +3,7 @@ export interface FaqItem {
   answer: string
 }
 
-/** Parents FAQ — provisional class-size/tuition answers until Kian confirms numbers. */
+/** Parents FAQ. Tuition and class-size figures are deliberately not published at this stage. */
 export const parentsFaq: FaqItem[] = [
   {
     question: 'پردیسان نوین کجاست؟',
