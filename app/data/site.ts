@@ -5,7 +5,16 @@ export const SITE = {
   fullName: 'مدرسه پردیسان نوین',
   shortName: 'پردیسان نوین',
   /** Names parents actually search for (Search Console, 2026-11). */
-  alternateNames: ['پردیسان', 'دبیرستان پردیسان', 'دبیرستان پردیسان کرج', 'مدرسه پردیسان کرج'],
+  alternateNames: [
+    'پردیسان',
+    'دبیرستان پردیسان',
+    'دبیرستان پردیسان کرج',
+    'مدرسه پردیسان کرج',
+    'دبیرستان دخترانه پردیسان',
+    'دبیرستان دخترانه پردیسان نوین',
+  ],
+  /** One-line description for structured data and crawlers. */
+  description: 'دبیرستان دخترانه غیردولتی در گوهردشت (رجایی‌شهر) کرج؛ شعبه ۱ متوسطه اول و شعبه ۲ متوسطه دوم.',
   city: 'کرج',
   region: 'البرز',
   country: 'ایران',

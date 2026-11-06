@@ -67,6 +67,7 @@ export function useSchoolJsonLd() {
     '@id': SCHOOL_ID,
     name: SITE.fullName,
     alternateName: [SITE.name, ...SITE.alternateNames],
+    description: SITE.description,
     url: `${SITE_URL}/`,
     logo: `${SITE_URL}${SITE.logo}`,
     image: toAbsoluteUrl(SITE.defaultOgImage),
