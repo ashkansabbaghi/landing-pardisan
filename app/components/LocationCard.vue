@@ -27,6 +27,14 @@
         >
           مسیریابی در گوگل مپ
         </a>
+        <a
+          :href="branch.neshanUrl"
+          class="inline-flex rounded-full border border-ink/15 bg-white/40 px-4 py-2 text-xs font-medium"
+          target="_blank"
+          rel="noreferrer"
+        >
+          مسیریابی در نشان
+        </a>
         <NuxtLink
           :to="`/${branch.slug}`"
           class="inline-flex rounded-full border border-ink/15 bg-white/40 px-4 py-2 text-xs font-medium"

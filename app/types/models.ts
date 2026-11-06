@@ -37,7 +37,10 @@ export interface Branch {
   postalCode?: string
   phone: string
   phoneHref: string
+  /** Google Maps share link. */
   mapUrl: string
+  /** Neshan place page. */
+  neshanUrl: string
   geo: { latitude: number; longitude: number }
   image: string
   imageAlt: string

@@ -85,7 +85,7 @@ export function useSchoolJsonLd() {
       '@type': 'Place',
       name: `${SITE.fullName} — ${branch.name}`,
       telephone: branch.phoneHref.replace('tel:', ''),
-      hasMap: branch.mapUrl,
+      hasMap: [branch.mapUrl, branch.neshanUrl],
       geo: {
         '@type': 'GeoCoordinates',
         latitude: branch.geo.latitude,
